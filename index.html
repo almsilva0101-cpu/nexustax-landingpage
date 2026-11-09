@@ -62,10 +62,9 @@
         <!-- Desktop Menu -->
         <nav class="hidden md:flex items-center gap-8">
           <a href="#sobre" class="text-sm font-medium text-nexus-muted hover:text-white transition-colors">Quem Somos</a>
-          <a href="#problema" class="text-sm font-medium text-nexus-muted hover:text-white transition-colors">O Problema</a>
+          <a href="#publico" class="text-sm font-medium text-nexus-muted hover:text-white transition-colors">Ecossistema</a>
           <a href="#solucao" class="text-sm font-medium text-nexus-muted hover:text-white transition-colors">A Solução</a>
           <a href="#simulador" class="text-sm font-medium text-nexus-muted hover:text-white transition-colors">Simulador</a>
-          <a href="#docs" class="text-sm font-medium text-nexus-muted hover:text-white transition-colors">Developers</a>
         </nav>
 
         <!-- CTA -->
@@ -106,11 +105,11 @@
 
         <!-- Buttons -->
         <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <a href="#docs" class="px-8 py-4 rounded-xl text-base font-semibold text-white bg-gradient-to-r from-nexus-primary to-indigo-500 shadow-lg shadow-nexus-primary/25 hover:shadow-nexus-primary/40 transition-all transform hover:-translate-y-1">
-            <i class="fa-solid fa-code mr-2"></i> Acessar Documentação
+          <a href="#contato" class="px-8 py-4 rounded-xl text-base font-semibold text-white bg-gradient-to-r from-nexus-primary to-indigo-500 shadow-lg shadow-nexus-primary/25 hover:shadow-nexus-primary/40 transition-all transform hover:-translate-y-1">
+            <i class="fa-solid fa-code mr-2"></i> Integrar a API Agora
           </a>
-          <a href="#contato" class="px-8 py-4 rounded-xl text-base font-semibold text-white bg-nexus-card border border-nexus-border hover:border-nexus-muted hover:bg-slate-800/50 transition-all">
-            <i class="fa-solid fa-headset mr-2"></i> Falar com Especialista
+          <a href="#publico" class="px-8 py-4 rounded-xl text-base font-semibold text-white bg-nexus-card border border-nexus-border hover:border-nexus-muted hover:bg-slate-800/50 transition-all">
+            <i class="fa-solid fa-users mr-2"></i> Ver Soluções por Setor
           </a>
         </div>
       </div>
@@ -170,17 +169,74 @@
       </div>
     </section>
 
-    <!-- 3. A Dor (Problema) -->
-    <section id="problema" class="py-24 bg-nexus-card/30 border-y border-nexus-border/50">
+    <!-- 3. PARA QUEM É A NOSSA API (Nova Secção Adicionada) -->
+    <section id="publico" class="py-24 bg-nexus-card/30 border-y border-nexus-border/50 relative overflow-hidden">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-nexus-secondary font-mono text-sm font-bold uppercase tracking-wider mb-2">Construir In-House?</h2>
+          <h2 class="text-nexus-success font-mono text-sm font-bold uppercase tracking-wider mb-2">Para Quem Construímos</h2>
+          <p class="text-3xl md:text-4xl font-bold text-white">Uma infraestrutura desenhada para cada elo do ecossistema de pagamentos.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Card 1: Adquirentes / Subadquirentes -->
+          <div class="bg-nexus-bg border border-nexus-border p-6 rounded-2xl hover:border-nexus-primary transition-all hover:-translate-y-1 shadow-lg group">
+            <div class="w-12 h-12 rounded-lg bg-nexus-primary/20 border border-nexus-primary/30 flex items-center justify-center text-nexus-primary text-xl mb-5 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-credit-card"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Adquirentes & Subs</h3>
+            <p class="text-sm text-nexus-muted leading-relaxed">
+              Não trave o seu motor de autorização. A nossa API calcula o Split de impostos (IBS/CBS) em <strong>&lt; 25ms</strong>, separando a fatia do Fisco sem criar latência no momento da passagem do cartão pelo seu cliente.
+            </p>
+          </div>
+
+          <!-- Card 2: Emissores -->
+          <div class="bg-nexus-bg border border-nexus-border p-6 rounded-2xl hover:border-nexus-secondary transition-all hover:-translate-y-1 shadow-lg group">
+            <div class="w-12 h-12 rounded-lg bg-nexus-secondary/20 border border-nexus-secondary/30 flex items-center justify-center text-nexus-secondary text-xl mb-5 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-building-columns"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Emissores e Bancos</h3>
+            <p class="text-sm text-nexus-muted leading-relaxed">
+              Tanto nas transferências PIX quanto nas liquidações de cartões, saiba exatamente quanto liquidar na conta do recebedor e quanto reter para a conta do Governo. Garantia matemática de compliance.
+            </p>
+          </div>
+
+          <!-- Card 3: ERPs e Software Houses -->
+          <div class="bg-nexus-bg border border-nexus-border p-6 rounded-2xl hover:border-nexus-success transition-all hover:-translate-y-1 shadow-lg group">
+            <div class="w-12 h-12 rounded-lg bg-nexus-success/20 border border-nexus-success/30 flex items-center justify-center text-nexus-success text-xl mb-5 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-laptop-code"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">ERPs e Sistemas</h3>
+            <p class="text-sm text-nexus-muted leading-relaxed">
+              Ofereça adequação tributária instantânea aos seus milhares de clientes. Com uma única integração Plug-and-Play White-label, o seu software gere todo o recolhimento de forma invisível.
+            </p>
+          </div>
+
+          <!-- Card 4: Lojas e Varejo -->
+          <div class="bg-nexus-bg border border-nexus-border p-6 rounded-2xl hover:border-amber-500 transition-all hover:-translate-y-1 shadow-lg group">
+            <div class="w-12 h-12 rounded-lg bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-500 text-xl mb-5 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-store"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Lojistas e Varejo</h3>
+            <p class="text-sm text-nexus-muted leading-relaxed">
+              Venda sem dores de cabeça com a contabilidade. A NexusTax garante que a conciliação das suas vendas mostra o valor líquido real e imediato, sem surpresas com bitributação ou multas da Receita.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. A Dor (Problema) -->
+    <section id="problema" class="py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-nexus-danger font-mono text-sm font-bold uppercase tracking-wider mb-2">Construir In-House?</h2>
           <p class="text-3xl md:text-4xl font-bold text-white">O Governo não oferece uma API simples. A NexusTax sim.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Card 1 -->
-          <div class="bg-nexus-bg border border-nexus-border rounded-2xl p-8 hover:border-nexus-danger/50 transition-colors group">
+          <div class="bg-nexus-card border border-nexus-border rounded-2xl p-8 hover:border-nexus-danger/50 transition-colors group">
             <div class="w-14 h-14 rounded-xl bg-nexus-danger/10 border border-nexus-danger/20 flex items-center justify-center mb-6 text-nexus-danger text-2xl group-hover:scale-110 transition-transform">
               <i class="fa-solid fa-network-wired"></i>
             </div>
@@ -188,8 +244,7 @@
             <p class="text-nexus-muted leading-relaxed">A Receita Federal exige túneis VPN IPsec dedicados com roteamento dinâmico BGP e SNAT. Um pesadelo de engenharia de redes para manter 24/7.</p>
           </div>
 
-          <!-- Card 2 -->
-          <div class="bg-nexus-bg border border-nexus-border rounded-2xl p-8 hover:border-nexus-danger/50 transition-colors group">
+          <div class="bg-nexus-card border border-nexus-border rounded-2xl p-8 hover:border-nexus-danger/50 transition-colors group">
             <div class="w-14 h-14 rounded-xl bg-nexus-danger/10 border border-nexus-danger/20 flex items-center justify-center mb-6 text-nexus-danger text-2xl group-hover:scale-110 transition-transform">
               <i class="fa-solid fa-file-signature"></i>
             </div>
@@ -197,8 +252,7 @@
             <p class="text-nexus-muted leading-relaxed">Cada requisição exige certificados mTLS, canonicalização JSON estrita (RFC 8785), assinaturas JWS e gestão pública de chaves (JWKS).</p>
           </div>
 
-          <!-- Card 3 -->
-          <div class="bg-nexus-bg border border-nexus-border rounded-2xl p-8 hover:border-nexus-danger/50 transition-colors group">
+          <div class="bg-nexus-card border border-nexus-border rounded-2xl p-8 hover:border-nexus-danger/50 transition-colors group">
             <div class="w-14 h-14 rounded-xl bg-nexus-danger/10 border border-nexus-danger/20 flex items-center justify-center mb-6 text-nexus-danger text-2xl group-hover:scale-110 transition-transform">
               <i class="fa-solid fa-hourglass-half"></i>
             </div>
@@ -209,8 +263,8 @@
       </div>
     </section>
 
-    <!-- 3. A Solução -->
-    <section id="solucao" class="py-24">
+    <!-- 5. A Solução -->
+    <section id="solucao" class="py-24 bg-nexus-card/30 border-y border-nexus-border/50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16">
           <h2 class="text-nexus-primary font-mono text-sm font-bold uppercase tracking-wider mb-2">A Plataforma</h2>
@@ -220,7 +274,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           
-          <div class="flex gap-6 bg-nexus-card border border-nexus-border rounded-2xl p-8 hover:border-nexus-primary/50 transition-colors">
+          <div class="flex gap-6 bg-nexus-bg border border-nexus-border rounded-2xl p-8 hover:border-nexus-primary/50 transition-colors">
             <div class="shrink-0 w-12 h-12 rounded-full bg-nexus-primary/20 flex items-center justify-center text-nexus-primary text-xl">
               <i class="fa-solid fa-bolt"></i>
             </div>
@@ -230,7 +284,7 @@
             </div>
           </div>
 
-          <div class="flex gap-6 bg-nexus-card border border-nexus-border rounded-2xl p-8 hover:border-nexus-primary/50 transition-colors">
+          <div class="flex gap-6 bg-nexus-bg border border-nexus-border rounded-2xl p-8 hover:border-nexus-primary/50 transition-colors">
             <div class="shrink-0 w-12 h-12 rounded-full bg-nexus-primary/20 flex items-center justify-center text-nexus-primary text-xl">
               <i class="fa-solid fa-vault"></i>
             </div>
@@ -240,7 +294,7 @@
             </div>
           </div>
 
-          <div class="flex gap-6 bg-nexus-card border border-nexus-border rounded-2xl p-8 hover:border-nexus-primary/50 transition-colors">
+          <div class="flex gap-6 bg-nexus-bg border border-nexus-border rounded-2xl p-8 hover:border-nexus-primary/50 transition-colors">
             <div class="shrink-0 w-12 h-12 rounded-full bg-nexus-primary/20 flex items-center justify-center text-nexus-primary text-xl">
               <i class="fa-solid fa-key"></i>
             </div>
@@ -250,7 +304,7 @@
             </div>
           </div>
 
-          <div class="flex gap-6 bg-nexus-card border border-nexus-border rounded-2xl p-8 hover:border-nexus-primary/50 transition-colors">
+          <div class="flex gap-6 bg-nexus-bg border border-nexus-border rounded-2xl p-8 hover:border-nexus-primary/50 transition-colors">
             <div class="shrink-0 w-12 h-12 rounded-full bg-nexus-primary/20 flex items-center justify-center text-nexus-primary text-xl">
               <i class="fa-solid fa-shield-halved"></i>
             </div>
@@ -264,8 +318,8 @@
       </div>
     </section>
 
-    <!-- 4. O Fluxo -->
-    <section class="py-24 bg-nexus-card/30 border-y border-nexus-border/50 overflow-hidden">
+    <!-- 6. O Fluxo -->
+    <section class="py-24 overflow-hidden">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
           <h2 class="text-3xl md:text-4xl font-bold text-white">Como funciona na prática</h2>
@@ -276,26 +330,22 @@
           <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gradient-to-r from-nexus-bg via-nexus-primary/50 to-nexus-bg -translate-y-1/2 z-0"></div>
 
           <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
-            <!-- Passo 1 -->
-            <div class="bg-nexus-bg border border-nexus-border p-6 rounded-xl text-center shadow-xl">
-              <div class="w-10 h-10 mx-auto rounded-full bg-nexus-card border-2 border-nexus-secondary flex items-center justify-center font-bold mb-4">1</div>
+            <div class="bg-nexus-card border border-nexus-border p-6 rounded-xl text-center shadow-xl">
+              <div class="w-10 h-10 mx-auto rounded-full bg-nexus-bg border-2 border-nexus-secondary flex items-center justify-center font-bold mb-4">1</div>
               <h4 class="font-bold text-white mb-2">Checkout / PDV</h4>
               <p class="text-sm text-nexus-muted">A sua Adquirente/ERP envia um simples JSON com o valor da venda, NCM e CEP.</p>
             </div>
-            <!-- Passo 2 -->
-            <div class="bg-nexus-bg border border-nexus-border p-6 rounded-xl text-center shadow-xl">
-              <div class="w-10 h-10 mx-auto rounded-full bg-nexus-card border-2 border-nexus-primary flex items-center justify-center font-bold mb-4">2</div>
+            <div class="bg-nexus-card border border-nexus-border p-6 rounded-xl text-center shadow-xl">
+              <div class="w-10 h-10 mx-auto rounded-full bg-nexus-bg border-2 border-nexus-primary flex items-center justify-center font-bold mb-4">2</div>
               <h4 class="font-bold text-white mb-2">NexusTax API</h4>
               <p class="text-sm text-nexus-muted">A API calcula a segregação exata (IBS/CBS) usando Banker's Rounding em &lt; 25ms.</p>
             </div>
-            <!-- Passo 3 -->
-            <div class="bg-nexus-bg border border-nexus-border p-6 rounded-xl text-center shadow-xl">
-              <div class="w-10 h-10 mx-auto rounded-full bg-nexus-card border-2 border-nexus-success flex items-center justify-center font-bold mb-4">3</div>
+            <div class="bg-nexus-card border border-nexus-border p-6 rounded-xl text-center shadow-xl">
+              <div class="w-10 h-10 mx-auto rounded-full bg-nexus-bg border-2 border-nexus-success flex items-center justify-center font-bold mb-4">3</div>
               <h4 class="font-bold text-white mb-2">Aprovação Instantânea</h4>
               <p class="text-sm text-nexus-muted">Devolvemos a instrução de rateio. A venda é aprovada no seu cliente sem atrasos.</p>
             </div>
-            <!-- Passo 4 -->
-            <div class="bg-nexus-bg border border-nexus-border p-6 rounded-xl text-center shadow-xl ring-2 ring-nexus-primary/20">
+            <div class="bg-nexus-card border border-nexus-border p-6 rounded-xl text-center shadow-xl ring-2 ring-nexus-primary/20">
               <div class="w-10 h-10 mx-auto rounded-full bg-nexus-primary border-2 border-indigo-300 flex items-center justify-center font-bold mb-4 text-white"><i class="fa-solid fa-building-columns"></i></div>
               <h4 class="font-bold text-white mb-2">Governo Federal</h4>
               <p class="text-sm text-nexus-muted">Em background, os nossos Workers assinam os lotes via JWS e enviam para a Plataforma Pública.</p>
@@ -305,8 +355,8 @@
       </div>
     </section>
 
-    <!-- 5. Simulador -->
-    <section id="simulador" class="py-24">
+    <!-- 7. Simulador -->
+    <section id="simulador" class="py-24 bg-nexus-card/30 border-y border-nexus-border/50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16">
           <h2 class="text-nexus-success font-mono text-sm font-bold uppercase tracking-wider mb-2">Sandbox de Retenção</h2>
@@ -314,30 +364,30 @@
           <p class="text-nexus-muted text-lg">Experimente a decomposição automática entre a fatia do comerciante e a partição do Fisco em tempo real.</p>
         </div>
 
-        <div class="bg-nexus-card border border-nexus-border rounded-2xl p-6 md:p-10 shadow-2xl">
+        <div class="bg-nexus-bg border border-nexus-border rounded-2xl p-6 md:p-10 shadow-2xl">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
             <!-- Formulário -->
             <div>
               <label class="block font-mono text-xs font-semibold text-nexus-muted uppercase tracking-wider mb-3">Cenários Fiscais de Demonstração</label>
               <div class="flex flex-wrap gap-2 mb-8">
-                <button onclick="applyPreset(100, '2202.10.00', 32.0, 'Bebidas (Imposto Seletivo)')" class="px-3 py-1.5 rounded-md text-xs font-medium bg-nexus-bg border border-nexus-border hover:border-nexus-secondary hover:text-white transition-colors">Bebida (Seletivo)</button>
-                <button onclick="applyPreset(50, '1006.30.21', 0.0, 'Cesta Básica Nacional (Alíquota Zero)')" class="px-3 py-1.5 rounded-md text-xs font-medium bg-nexus-bg border border-nexus-border hover:border-nexus-secondary hover:text-white transition-colors">Cesta Básica (0%)</button>
-                <button onclick="applyPreset(1200, '8517.13.00', 26.5, 'Eletrónicos (Alíquota de Referência)')" class="px-3 py-1.5 rounded-md text-xs font-medium bg-nexus-bg border border-nexus-border hover:border-nexus-secondary hover:text-white transition-colors">Smartphone (Padrão)</button>
+                <button onclick="applyPreset(100, '2202.10.00', 32.0, 'Bebidas (Imposto Seletivo)')" class="px-3 py-1.5 rounded-md text-xs font-medium bg-nexus-card border border-nexus-border hover:border-nexus-secondary hover:text-white transition-colors">Bebida (Seletivo)</button>
+                <button onclick="applyPreset(50, '1006.30.21', 0.0, 'Cesta Básica Nacional (Alíquota Zero)')" class="px-3 py-1.5 rounded-md text-xs font-medium bg-nexus-card border border-nexus-border hover:border-nexus-secondary hover:text-white transition-colors">Cesta Básica (0%)</button>
+                <button onclick="applyPreset(1200, '8517.13.00', 26.5, 'Eletrónicos (Alíquota de Referência)')" class="px-3 py-1.5 rounded-md text-xs font-medium bg-nexus-card border border-nexus-border hover:border-nexus-secondary hover:text-white transition-colors">Smartphone (Padrão)</button>
               </div>
 
               <div class="space-y-5">
                 <div>
                   <label class="block text-sm font-medium text-slate-300 mb-1">Valor da Venda (R$)</label>
-                  <input type="number" id="sim-val" value="100.00" oninput="execCalc()" class="w-full bg-nexus-bg border border-nexus-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-nexus-primary focus:ring-1 focus:ring-nexus-primary transition-all" />
+                  <input type="number" id="sim-val" value="100.00" oninput="execCalc()" class="w-full bg-nexus-card border border-nexus-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-nexus-primary focus:ring-1 focus:ring-nexus-primary transition-all" />
                 </div>
                 <div>
                   <label class="block text-sm font-medium text-slate-300 mb-1">Código NCM</label>
-                  <input type="text" id="sim-ncm" value="8517.13.00" readonly class="w-full bg-nexus-bg/50 border border-nexus-border rounded-lg px-4 py-3 text-nexus-muted cursor-not-allowed" />
+                  <input type="text" id="sim-ncm" value="8517.13.00" readonly class="w-full bg-nexus-card/50 border border-nexus-border rounded-lg px-4 py-3 text-nexus-muted cursor-not-allowed" />
                 </div>
                 <div>
                   <label class="block text-sm font-medium text-slate-300 mb-1">Município / Estado de Destino</label>
-                  <select id="sim-uf" onchange="execCalc()" class="w-full bg-nexus-bg border border-nexus-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-nexus-primary focus:ring-1 focus:ring-nexus-primary transition-all appearance-none">
+                  <select id="sim-uf" onchange="execCalc()" class="w-full bg-nexus-card border border-nexus-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-nexus-primary focus:ring-1 focus:ring-nexus-primary transition-all appearance-none">
                     <option value="SE">Aracaju (SE)</option>
                     <option value="SP">São Paulo (SP)</option>
                     <option value="RJ">Rio de Janeiro (RJ)</option>
@@ -348,7 +398,7 @@
             </div>
 
             <!-- Display -->
-            <div class="bg-nexus-bg border border-nexus-border rounded-xl p-6 md:p-8 flex flex-col gap-6">
+            <div class="bg-nexus-card border border-nexus-border rounded-xl p-6 md:p-8 flex flex-col gap-6">
               <div class="flex justify-between items-center pb-4 border-b border-nexus-border font-mono text-sm">
                 <span class="text-nexus-success flex items-center gap-2"><i class="fa-solid fa-circle-check"></i> Motor: 200 OK</span>
                 <span id="display-latency" class="text-nexus-secondary">Latência: 19ms</span>
@@ -359,18 +409,18 @@
                   <span>Roteamento Percentual</span>
                   <span id="display-ratio">73.5% Lojista / 26.5% Tributos</span>
                 </div>
-                <div class="flex h-3 bg-nexus-card rounded-full overflow-hidden">
+                <div class="flex h-3 bg-nexus-bg rounded-full overflow-hidden">
                   <div id="bar-merchant" class="bg-gradient-to-r from-nexus-secondary to-nexus-success w-[73.5%] transition-all duration-300"></div>
                   <div id="bar-tax" class="bg-gradient-to-r from-amber-500 to-nexus-danger w-[26.5%] transition-all duration-300"></div>
                 </div>
               </div>
 
               <div class="grid grid-cols-2 gap-4">
-                <div class="bg-nexus-card border border-nexus-success/30 rounded-lg p-4">
+                <div class="bg-nexus-bg border border-nexus-success/30 rounded-lg p-4">
                   <div class="text-xs text-nexus-muted mb-1">Líquido do Vendedor</div>
                   <div id="val-merchant" class="font-mono text-2xl font-bold text-nexus-success">R$ 73,50</div>
                 </div>
-                <div class="bg-nexus-card border border-nexus-danger/30 rounded-lg p-4">
+                <div class="bg-nexus-bg border border-nexus-danger/30 rounded-lg p-4">
                   <div class="text-xs text-nexus-muted mb-1">Retenção Fisco (IBS/CBS)</div>
                   <div id="val-tax" class="font-mono text-2xl font-bold text-nexus-danger">R$ 26,50</div>
                 </div>
@@ -386,8 +436,8 @@
       </div>
     </section>
 
-    <!-- 6. Developer Experience -->
-    <section id="docs" class="py-24 bg-nexus-card/30 border-y border-nexus-border/50">
+    <!-- 8. Developer Experience -->
+    <section id="docs" class="py-24">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
@@ -437,8 +487,8 @@
       </div>
     </section>
 
-    <!-- 7. Contato / CTA Final -->
-    <section id="contato" class="py-32 relative overflow-hidden">
+    <!-- 9. Contato / CTA Final -->
+    <section id="contato" class="py-32 relative overflow-hidden bg-nexus-card/50 border-t border-nexus-border">
       <!-- Glow bottom -->
       <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-nexus-primary/20 via-nexus-bg to-nexus-bg -z-10"></div>
       
@@ -446,19 +496,24 @@
         <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6">O relógio da Reforma Tributária já está a contar.</h2>
         <p class="text-xl text-nexus-muted mb-10">A fase de testes do Banco Central arranca em Novembro. Garanta a infraestrutura da sua operação hoje e acesse o nosso ambiente Sandbox.</p>
         
-        <form onsubmit="handleForm(event)" class="bg-nexus-card border border-nexus-border rounded-2xl p-8 shadow-2xl text-left">
+        <form onsubmit="handleForm(event)" class="bg-nexus-bg border border-nexus-border rounded-2xl p-8 shadow-2xl text-left">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
               <label class="block text-sm font-medium text-slate-300 mb-2">Nome Completo</label>
-              <input type="text" required class="w-full bg-nexus-bg border border-nexus-border rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-nexus-primary focus:ring-1 focus:ring-nexus-primary transition-all" />
+              <input type="text" required class="w-full bg-nexus-card border border-nexus-border rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-nexus-primary focus:ring-1 focus:ring-nexus-primary transition-all" />
             </div>
             <div>
               <label class="block text-sm font-medium text-slate-300 mb-2">E-mail Corporativo</label>
-              <input type="email" required class="w-full bg-nexus-bg border border-nexus-border rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-nexus-primary focus:ring-1 focus:ring-nexus-primary transition-all" />
+              <input type="email" required class="w-full bg-nexus-card border border-nexus-border rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-nexus-primary focus:ring-1 focus:ring-nexus-primary transition-all" />
             </div>
             <div class="md:col-span-2">
-              <label class="block text-sm font-medium text-slate-300 mb-2">Empresa / Instituição Financeira</label>
-              <input type="text" required class="w-full bg-nexus-bg border border-nexus-border rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-nexus-primary focus:ring-1 focus:ring-nexus-primary transition-all" />
+              <label class="block text-sm font-medium text-slate-300 mb-2">Sua Empresa atua como:</label>
+              <select class="w-full bg-nexus-card border border-nexus-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-nexus-primary focus:ring-1 focus:ring-nexus-primary transition-all appearance-none">
+                <option value="adquirente">Adquirente / Subadquirente</option>
+                <option value="emissor">Emissor / Instituição de Pagamento</option>
+                <option value="erp">ERP / Software House</option>
+                <option value="varejo">Grande Varejista</option>
+              </select>
             </div>
           </div>
           
@@ -523,13 +578,11 @@
       document.getElementById('bar-tax').style.width = taxPct + '%';
       document.getElementById('display-regime').innerText = currentRegimeText;
 
-      const ms = Math.floor(Math.random() * 8) + 16; // Random ms between 16 and 23
+      const ms = Math.floor(Math.random() * 8) + 16; 
       document.getElementById('display-latency').innerText = 'Latência: ' + ms + 'ms';
     }
 
-    // Inicializa o simulador
     execCalc();
-
 
     // --- Lógica das Tabs de Código ---
     const codeExamples = {
@@ -581,7 +634,6 @@ func main() {
     function setCodeLang(lang, btn) {
       document.getElementById('code-content').innerText = codeExamples[lang];
       
-      // Update Tab styling
       const tabs = document.querySelectorAll('.tab-btn');
       tabs.forEach(t => {
         t.classList.remove('active', 'text-white', 'bg-slate-800', 'border-slate-700');
