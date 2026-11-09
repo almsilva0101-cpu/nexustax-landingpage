@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusTax | Infraestrutura de Split Payment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans antialiased">
+
+    <!-- Navegação -->
+    <nav class="border-b border-gray-800 bg-gray-900/95 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 font-bold text-2xl tracking-tighter text-white">
+                    Nexus<span class="text-blue-500">Tax</span>
+                </div>
+                <div>
+                    <a href="#contato" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                        Falar com Especialista
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-20 lg:py-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6">
+                Infraestrutura de Split Payment para a <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Reforma Tributária</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-400 mb-10">
+                A API definitiva para Adquirentes, Subadquirentes e ERPs. Resolvemos a alta complexidade do rateio de impostos (CBS/IBS) com latência inferior a 25ms.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#contato" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors">
+                    Integrar Agora
+                </a>
+                <a href="#arquitetura" class="border border-gray-700 hover:bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors">
+                    Ver Arquitetura
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Funcionalidades (Core Value) -->
+    <section class="py-16 bg-gray-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700">
+                    <div class="text-blue-500 mb-4">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Latência < 25ms</h3>
+                    <p class="text-gray-400">Processamento assíncrono projetado para o momento do checkout. Não impacte a conversão das maquininhas dos seus clientes.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700">
+                    <div class="text-blue-500 mb-4">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Conformidade e Segurança</h3>
+                    <p class="text-gray-400">Túneis mTLS estabelecidos e assinatura digital JWS/JWKS nativa para comunicação selada com a Receita Federal e SEFAZ.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700">
+                    <div class="text-blue-500 mb-4">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Gateway Multi-Tenant</h3>
+                    <p class="text-gray-400">Gerenciamento isolado de certificados e-CNPJ (KMS). Uma única integração, múltiplas empresas operando em segurança.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Arquitetura -->
+    <section id="arquitetura" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-white mb-8">Stack Tecnológica de Alta Concorrência</h2>
+            <div class="flex flex-wrap justify-center gap-6">
+                <span class="px-6 py-3 bg-gray-800 rounded-full text-gray-300 font-semibold border border-gray-700">Go (Golang)</span>
+                <span class="px-6 py-3 bg-gray-800 rounded-full text-gray-300 font-semibold border border-gray-700">Redis In-Memory</span>
+                <span class="px-6 py-3 bg-gray-800 rounded-full text-gray-300 font-semibold border border-gray-700">Apache Kafka</span>
+                <span class="px-6 py-3 bg-gray-800 rounded-full text-gray-300 font-semibold border border-gray-700">KMS Blindado</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato / CTA -->
+    <section id="contato" class="py-20 bg-gray-800/30 border-t border-gray-800">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Pronto para liderar a adequação fiscal?</h2>
+            <p class="text-gray-400 mb-8">Fale com os nossos especialistas e descubra como implementar o Split Payment sem comprometer a performance do seu negócio.</p>
+            
+            <form class="space-y-4 max-w-md mx-auto text-left" onsubmit="event.preventDefault(); alert('Formulário configurado! (Em breve integraremos o envio real)');">
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-1">Nome da Empresa</label>
+                    <input type="text" required class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-1">E-mail Corporativo</label>
+                    <input type="email" required class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-1">Volume de Transações (Mensal)</label>
+                    <select class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500">
+                        <option>Até 100 mil</option>
+                        <option>100 mil a 1 Milhão</option>
+                        <option>Mais de 1 Milhão</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-colors mt-4">
+                    Solicitar Proposta Técnica
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center border-t border-gray-800 text-gray-500 text-sm">
+        <p>&copy; 2026 NexusTax. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
