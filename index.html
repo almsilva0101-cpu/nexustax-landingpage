@@ -113,7 +113,7 @@
       background-color: #166534;
     }
 
-    .btn-sandbox-nav {
+    .btn-action-nav {
       background-color: var(--primary);
       color: white;
       text-decoration: none;
@@ -124,7 +124,7 @@
       transition: background 0.2s;
     }
 
-    .btn-sandbox-nav:hover {
+    .btn-action-nav:hover {
       background-color: var(--primary-hover);
     }
 
@@ -177,6 +177,7 @@
       margin: 0 auto;
       text-align: left;
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+      position: relative;
     }
 
     .form-row {
@@ -227,11 +228,38 @@
       font-weight: 600;
       cursor: pointer;
       margin-top: 10px;
-      transition: background 0.2s;
+      transition: background 0.2s, opacity 0.2s;
     }
 
     .btn-submit:hover {
       background-color: var(--primary-hover);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .success-alert {
+      display: none;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid var(--accent);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .success-alert h3 {
+      color: var(--accent);
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+    }
+
+    .success-alert p {
+      color: var(--text-main);
+      font-size: 0.9rem;
+      margin: 0;
     }
 
     footer {
@@ -325,7 +353,7 @@
 
     <nav>
       <a href="#solucao">A Solução</a>
-      <a href="#cadastro">Acessar Sandbox</a>
+      <a href="#cadastro">Acesso Antecipado</a>
       <a href="mailto:contato@nexustaxapi.com.br">Contato</a>
     </nav>
 
@@ -333,27 +361,27 @@
       <a href="https://wa.me/5579988216266" target="_blank" class="btn-whatsapp-nav">
         WhatsApp
       </a>
-      <a href="#cadastro" class="btn-sandbox-nav">
-        Acessar Sandbox →
+      <a href="#cadastro" class="btn-action-nav">
+        Acesso Antecipado →
       </a>
     </div>
   </header>
 
-  <!-- Seção Principal -->
+  <!-- Secção Principal (Hero) -->
   <main class="hero">
     <h1>O relógio da Reforma Tributária já está a contar.</h1>
-    <p>A fase de testes do Banco Central arranca em Novembro. Garanta a infraestrutura da sua operação hoje e acesse o nosso ambiente Sandbox.</p>
+    <p>A fase de testes do Banco Central arranca em Novembro. Garanta a infraestrutura de Split Payment da sua operação e receba suporte prioritário.</p>
 
     <a href="https://wa.me/5579988216266" target="_blank" class="whatsapp-contact-badge">
       Atendimento Direto & WhatsApp: <span>+55 (79) 98821-6266</span>
     </a>
 
-    <!-- Bloco do Formulário Completo -->
+    <!-- Bloco do Formulário -->
     <section class="form-container" id="cadastro">
-      <form action="https://api.web3forms.com/submit" method="POST">
-        <!-- Chave Web3Forms ativa -->
-        <input type="hidden" name="access_key" value="86e9989d-a9cf-4e10-92da-511324ce11d3">
-        <input type="hidden" name="subject" value="Novo Pedido de Sandbox - NexusTax API">
+      <form id="leadForm">
+        <!-- Chave Web3Forms vinculada ao contato@nexustaxapi.com.br -->
+        <input type="hidden" name="access_key" value="aeed105b-3c0c-4c5b-983a-71f141b47f9f">
+        <input type="hidden" name="subject" value="Novo Lead - Acesso Antecipado NexusTax API">
         <input type="hidden" name="from_name" value="NexusTax Landing Page">
         <input type="checkbox" name="botcheck" style="display: none;">
 
@@ -361,11 +389,11 @@
         <div class="form-row">
           <div class="form-group" style="margin-bottom: 0;">
             <label for="nome">Nome Completo</label>
-            <input type="text" id="nome" name="nome" placeholder="Ex: Anderson Prado" required>
+            <input type="text" id="nome" name="nome" placeholder="Ex: Carlos Eduardo" required>
           </div>
           <div class="form-group" style="margin-bottom: 0;">
             <label for="email">E-mail Corporativo</label>
-            <input type="email" id="email" name="email" placeholder="nome@empresa.com.br" required>
+            <input type="email" id="email" name="email" placeholder="carlos@empresa.com.br" required>
           </div>
         </div>
 
@@ -375,15 +403,15 @@
           <input type="text" id="empresa" name="empresa" placeholder="Razão Social ou Nome Fantasia" required>
         </div>
 
-        <!-- Linha 3: Telefone Fixo e Celular / WhatsApp -->
+        <!-- Linha 3: Telefone Fixo e Celular / WhatsApp com máscaras numéricas -->
         <div class="form-row">
           <div class="form-group" style="margin-bottom: 0;">
             <label for="telefone">Telefone Comercial (Fixo)</label>
-            <input type="tel" id="telefone" name="telefone_fixo" placeholder="(00) 0000-0000">
+            <input type="tel" id="telefone" name="telefone_fixo" placeholder="(11) 3200-0000" maxlength="14">
           </div>
           <div class="form-group" style="margin-bottom: 0;">
             <label for="celular">Celular / WhatsApp</label>
-            <input type="tel" id="celular" name="celular_whatsapp" placeholder="(00) 90000-0000" required>
+            <input type="tel" id="celular" name="celular_whatsapp" placeholder="(11) 98800-0000" maxlength="15" required>
           </div>
         </div>
 
@@ -399,8 +427,14 @@
           </select>
         </div>
 
-        <button type="submit" class="btn-submit">Solicitar Acesso ao Sandbox API</button>
+        <button type="submit" id="btnSubmit" class="btn-submit">Garantir Acesso Antecipado</button>
       </form>
+
+      <!-- Mensagem de Confirmação Integrada -->
+      <div id="successMessage" class="success-alert">
+        <h3>✅ Solicitação enviada com sucesso!</h3>
+        <p>A sua vaga para o acesso antecipado foi registada. A nossa equipa entrará em contacto muito em breve para apresentar a infraestrutura.</p>
+      </div>
     </section>
   </main>
 
@@ -423,9 +457,91 @@
   </footer>
 
   <!-- Botão Flutuante de WhatsApp -->
-  <a href="https://wa.me/5579988216266?text=Ol%C3%A1%2C%20gostaria%20de%20tirar%20d%C3%BAvidas%20sobre%20a%20NexusTax%20API" target="_blank" class="floating-whatsapp">
+  <a href="https://wa.me/5579988216266?text=Ol%C3%A1%2C%20gostaria%20de%20tirar%20d%C3%BAvidas%20sobre%20o%20acesso%20antecipado%20da%20NexusTax%20API" target="_blank" class="floating-whatsapp">
     Falar no WhatsApp
   </a>
+
+  <!-- Script de Validações e Envio Assíncrono -->
+  <script>
+    // Máscara para Telefone Fixo (10 dígitos)
+    const telInput = document.getElementById('telefone');
+    telInput.addEventListener('input', function (e) {
+      let v = e.target.value.replace(/\D/g, '').substring(0, 10);
+      if (v.length > 6) {
+        e.target.value = `(${v.substring(0, 2)}) ${v.substring(2, 6)}-${v.substring(6)}`;
+      } else if (v.length > 2) {
+        e.target.value = `(${v.substring(0, 2)}) ${v.substring(2)}`;
+      } else if (v.length > 0) {
+        e.target.value = `(${v}`;
+      } else {
+        e.target.value = '';
+      }
+    });
+
+    // Máscara para Celular / WhatsApp (11 dígitos)
+    const celInput = document.getElementById('celular');
+    celInput.addEventListener('input', function (e) {
+      let v = e.target.value.replace(/\D/g, '').substring(0, 11);
+      if (v.length > 7) {
+        e.target.value = `(${v.substring(0, 2)}) ${v.substring(2, 7)}-${v.substring(7)}`;
+      } else if (v.length > 2) {
+        e.target.value = `(${v.substring(0, 2)}) ${v.substring(2)}`;
+      } else if (v.length > 0) {
+        e.target.value = `(${v}`;
+      } else {
+        e.target.value = '';
+      }
+    });
+
+    // Submissão assíncrona
+    const form = document.getElementById('leadForm');
+    const btnSubmit = document.getElementById('btnSubmit');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const celDigits = celInput.value.replace(/\D/g, '');
+      if (celDigits.length < 10) {
+        alert('Por favor, informe um número de celular ou WhatsApp válido com DDD.');
+        celInput.focus();
+        return;
+      }
+
+      btnSubmit.disabled = true;
+      btnSubmit.innerText = 'A processar solicitação...';
+
+      const formData = new FormData(form);
+      const json = JSON.stringify(Object.fromEntries(formData));
+
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: json
+        });
+
+        const result = await response.json();
+
+        if (response.status === 200) {
+          form.reset();
+          form.style.display = 'none';
+          successMessage.style.display = 'block';
+        } else {
+          alert(result.message || 'Ocorreu um erro no envio. Tente novamente.');
+          btnSubmit.disabled = false;
+          btnSubmit.innerText = 'Garantir Acesso Antecipado';
+        }
+      } catch (err) {
+        alert('Erro ao conectar ao servidor. Por favor, tente novamente ou fale pelo WhatsApp.');
+        btnSubmit.disabled = false;
+        btnSubmit.innerText = 'Garantir Acesso Antecipado';
+      }
+    });
+  </script>
 
 </body>
 </html>
