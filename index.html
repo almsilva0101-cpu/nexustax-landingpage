@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NexusTax API | A Infraestrutura do Split Payment</title>
+  <title>NexusTax API | A Infraestrutura do Split Payment para a Reforma Tributária</title>
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   
-  <!-- FontAwesome -->
+  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <!-- Tailwind CSS CDN -->
@@ -28,15 +28,15 @@
               bg: '#050814',
               card: '#0f1629',
               border: '#1e293b',
-              primary: '#4f46e5', // Indigo 600
+              primary: '#4f46e5',   // Indigo 600
               secondary: '#06b6d4', // Cyan 500
-              success: '#10b981', // Emerald 500
-              danger: '#ef4444', // Red 500
-              muted: '#94a3b8' // Slate 400
+              success: '#10b981',   // Emerald 500
+              danger: '#ef4444',    // Red 500
+              muted: '#94a3b8'     // Slate 400
             }
           },
           backgroundImage: {
-            'glow-gradient': 'radial-gradient(circle at 50% 0%, rgba(79, 70, 229, 0.15), transparent 50%)',
+            'glow-gradient': 'radial-gradient(circle at 50% 0%, rgba(79, 70, 229, 0.18), transparent 60%)',
           }
         }
       }
@@ -46,10 +46,10 @@
 <body class="bg-nexus-bg text-slate-100 font-sans antialiased overflow-x-hidden relative selection:bg-nexus-primary selection:text-white">
   
   <!-- Background Glow Effect -->
-  <div class="absolute top-0 left-0 w-full h-[800px] bg-glow-gradient -z-10 pointer-events-none"></div>
+  <div class="absolute top-0 left-0 w-full h-[950px] bg-glow-gradient -z-10 pointer-events-none"></div>
 
   <!-- Navbar -->
-  <header class="fixed w-full top-0 z-50 bg-nexus-bg/80 backdrop-blur-md border-b border-nexus-border">
+  <header class="fixed w-full top-0 z-50 bg-nexus-bg/85 backdrop-blur-md border-b border-nexus-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-20">
         <!-- Logo -->
@@ -59,21 +59,22 @@
           <span class="ml-2 px-2 py-0.5 rounded text-xs font-mono font-semibold bg-nexus-primary/20 text-nexus-secondary border border-nexus-secondary/30">API</span>
         </a>
 
-        <!-- Desktop Navigation -->
+        <!-- Desktop Menu -->
         <nav class="hidden md:flex items-center gap-8">
           <a href="#sobre" class="text-sm font-medium text-nexus-muted hover:text-white transition-colors">Quem Somos</a>
           <a href="#publico" class="text-sm font-medium text-nexus-muted hover:text-white transition-colors">Ecossistema</a>
+          <a href="#comparativo" class="text-sm font-medium text-nexus-muted hover:text-white transition-colors">Build vs Buy</a>
           <a href="#solucao" class="text-sm font-medium text-nexus-muted hover:text-white transition-colors">A Solução</a>
           <a href="#simulador" class="text-sm font-medium text-nexus-muted hover:text-white transition-colors">Simulador</a>
         </nav>
 
         <!-- CTA Header -->
         <div class="flex items-center gap-4">
-          <a href="https://wa.me/5579988216266" target="_blank" class="hidden md:flex items-center gap-2 text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors">
-            <i class="fa-brands fa-whatsapp text-lg"></i> Atendimento
+          <a href="https://wa.me/5579988216266" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium text-emerald-400 bg-emerald-950/40 border border-emerald-800/40 hover:bg-emerald-900/50 transition-all">
+            <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i> Atendimento
           </a>
           <a href="#contato" class="px-5 py-2.5 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-nexus-primary to-indigo-500 hover:to-indigo-400 shadow-[0_0_15px_rgba(79,70,229,0.3)] transition-all transform hover:-translate-y-0.5">
-            Garantir Acesso &rarr;
+            Garantir Acesso Antecipado &rarr;
           </a>
         </div>
       </div>
@@ -83,34 +84,48 @@
   <main class="pt-20">
     
     <!-- 1. Hero Section -->
-    <section class="relative pt-24 pb-32 overflow-hidden">
+    <section class="relative pt-20 pb-28 overflow-hidden">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         
         <!-- Status Badge -->
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-nexus-secondary/10 border border-nexus-secondary/30 text-nexus-secondary text-sm font-semibold mb-8 animate-fade-in-up">
-          <span class="w-2 h-2 rounded-full bg-nexus-success animate-pulse"></span>
-          Em conformidade com a Fase 1 (B2B Opcional) da LC 214/2025
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-nexus-secondary/10 border border-nexus-secondary/30 text-nexus-secondary text-sm font-semibold mb-8">
+          <span class="w-2.5 h-2.5 rounded-full bg-nexus-success animate-pulse"></span>
+          Em conformidade com a Fase 1 da LC 214/2025 • Testes do Banco Central
         </div>
 
         <!-- Headline -->
-        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
-          A infraestrutura invisível para o <br class="hidden md:block" />
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-nexus-secondary via-nexus-primary to-indigo-400">
-            Split Payment da Reforma Tributária.
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-[1.12] max-w-5xl mx-auto">
+          Prepare a sua operação para o <br class="hidden md:block" />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-nexus-secondary via-nexus-primary to-indigo-300">
+            Split Payment da Reforma Tributária
           </span>
+          antes do prazo.
         </h1>
 
         <!-- Subheadline -->
-        <p class="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-nexus-muted mb-12">
-          Integre a sua Adquirente ou ERP ao Governo em menos de 72 horas. Nós resolvemos as VPNs, a criptografia e o streaming da Receita Federal. Você foca-se apenas no checkout.
+        <p class="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-nexus-muted mb-8 leading-relaxed">
+          A infraestrutura pronta que o seu ERP ou Adquirente <strong class="text-slate-100 font-semibold">não precisa construir do zero</strong>. Eliminamos o risco de multas, bitributação e atrasos no checkout com uma API REST plug-and-play que segrega IBS e CBS em menos de 25ms.
         </p>
 
+        <!-- Compliance & Anti-Lock-In Trust Box -->
+        <div class="max-w-2xl mx-auto mb-10 p-4 rounded-xl bg-nexus-card/70 border border-nexus-secondary/25 text-left flex items-start gap-3.5 shadow-lg shadow-black/40">
+          <div class="w-8 h-8 rounded-lg bg-nexus-secondary/20 flex items-center justify-center text-nexus-secondary shrink-0 mt-0.5">
+            <i class="fa-solid fa-shield-check text-base"></i>
+          </div>
+          <div>
+            <span class="text-xs font-mono uppercase tracking-wider text-nexus-secondary font-bold block mb-0.5">Garantia de Compliance e Risco Zero</span>
+            <p class="text-xs sm:text-sm text-slate-300 leading-normal">
+              A NexusTax é <strong>puramente software de inteligência tributária</strong>. Não custodiamos, não movimentamos e não retemos os recursos da sua operação financeira.
+            </p>
+          </div>
+        </div>
+
         <!-- Buttons -->
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <a href="#contato" class="px-8 py-4 rounded-xl text-base font-semibold text-white bg-gradient-to-r from-nexus-primary to-indigo-500 shadow-lg shadow-nexus-primary/25 hover:shadow-nexus-primary/40 transition-all transform hover:-translate-y-1">
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+          <a href="#contato" class="w-full sm:w-auto px-8 py-4 rounded-xl text-base font-semibold text-white bg-gradient-to-r from-nexus-primary to-indigo-500 shadow-lg shadow-nexus-primary/25 hover:shadow-nexus-primary/40 transition-all transform hover:-translate-y-1">
             <i class="fa-solid fa-bolt mr-2"></i> Garantir Acesso Antecipado
           </a>
-          <a href="#publico" class="px-8 py-4 rounded-xl text-base font-semibold text-white bg-nexus-card border border-nexus-border hover:border-nexus-muted hover:bg-slate-800/50 transition-all">
+          <a href="#publico" class="w-full sm:w-auto px-8 py-4 rounded-xl text-base font-semibold text-white bg-nexus-card border border-nexus-border hover:border-nexus-muted hover:bg-slate-800/50 transition-all">
             <i class="fa-solid fa-users mr-2"></i> Ver Soluções por Setor
           </a>
         </div>
@@ -118,49 +133,55 @@
     </section>
 
     <!-- 2. Quem Somos e O Que Fazemos -->
-    <section id="sobre" class="py-24 relative">
+    <section id="sobre" class="py-24 relative border-t border-nexus-border/50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
           <!-- Quem Somos -->
           <div>
             <h2 class="text-nexus-secondary font-mono text-sm font-bold uppercase tracking-wider mb-2">Quem Somos</h2>
-            <p class="text-3xl md:text-4xl font-bold text-white mb-6">A ponte entre o mercado financeiro e o Fisco.</p>
+            <p class="text-3xl md:text-4xl font-bold text-white mb-6">A ponte entre o mercado financeiro e as exigências do Fisco.</p>
             <p class="text-nexus-muted text-lg leading-relaxed mb-6">
-              A NexusTax é uma <strong>Tech Provider (Software House)</strong> especializada em infraestrutura tributária de altíssima performance. Nascemos da união entre engenheiros de sistemas distribuídos e especialistas em compliance financeiro e pagamentos.
+              A NexusTax é uma <strong>Tech Provider de Infraestrutura Tributária</strong> de ultra baixa latência. Nascemos da união entre engenheiros de computação distribuída e especialistas em compliance de pagamentos regulados pelo Banco Central.
             </p>
             <p class="text-nexus-muted text-lg leading-relaxed">
-              O nosso propósito é garantir que Adquirentes, Subadquirentes e ERPs possam operar no novo ecossistema da Reforma Tributária (LC 214/2025) de forma imediata, sem precisarem de desviar o foco do seu negócio para se tornarem especialistas em redes governamentais.
+              O nosso objetivo central é assegurar que Adquirentes, Subadquirentes e plataformas de software possam se adequar à Reforma Tributária (LC 214/2025) sem precisar alocar meses de roadmap interno para lidar com redes e regras governamentais.
             </p>
           </div>
 
           <!-- O Que Fazemos -->
           <div class="bg-nexus-card border border-nexus-border p-8 md:p-10 rounded-2xl shadow-2xl relative overflow-hidden group">
-            <div class="absolute -top-10 -right-10 w-40 h-40 bg-nexus-primary/20 blur-3xl rounded-full transition-all group-hover:bg-nexus-primary/30"></div>
+            <div class="absolute -top-10 -right-10 w-44 h-44 bg-nexus-primary/20 blur-3xl rounded-full transition-all group-hover:bg-nexus-primary/30"></div>
             
-            <h2 class="text-nexus-primary font-mono text-sm font-bold uppercase tracking-wider mb-2">O Que Fazemos</h2>
-            <p class="text-2xl font-bold text-white mb-8">Infraestrutura invisível e White-label.</p>
+            <h2 class="text-nexus-primary font-mono text-sm font-bold uppercase tracking-wider mb-2">O Que Entregamos</h2>
+            <p class="text-2xl font-bold text-white mb-8">Infraestrutura invisível, robusta e White-label.</p>
             
             <ul class="space-y-6 relative z-10">
               <li class="flex gap-4 items-start">
-                <div class="w-10 h-10 rounded-lg bg-nexus-bg border border-nexus-border flex items-center justify-center text-nexus-secondary shrink-0 mt-1"><i class="fa-solid fa-code"></i></div>
+                <div class="w-10 h-10 rounded-lg bg-nexus-bg border border-nexus-border flex items-center justify-center text-nexus-secondary shrink-0 mt-1">
+                  <i class="fa-solid fa-code"></i>
+                </div>
                 <div>
                   <h4 class="text-white font-bold mb-1">Abstração de APIs Complexas</h4>
-                  <p class="text-sm text-nexus-muted">Traduzimos os pesados manuais do Governo em uma única API REST simples, rápida e segura para a sua equipa.</p>
+                  <p class="text-sm text-nexus-muted">Transformamos manuais regulatórios densos em uma API REST unificada, documentada e simples de plugar.</p>
                 </div>
               </li>
               <li class="flex gap-4 items-start">
-                <div class="w-10 h-10 rounded-lg bg-nexus-bg border border-nexus-border flex items-center justify-center text-nexus-secondary shrink-0 mt-1"><i class="fa-solid fa-calculator"></i></div>
+                <div class="w-10 h-10 rounded-lg bg-nexus-bg border border-nexus-border flex items-center justify-center text-nexus-secondary shrink-0 mt-1">
+                  <i class="fa-solid fa-calculator"></i>
+                </div>
                 <div>
-                  <h4 class="text-white font-bold mb-1">Motor de Cálculo Tributário</h4>
-                  <p class="text-sm text-nexus-muted">Realizamos a segregação exata de CBS/IBS com Banker's Rounding em tempo real (sub-25ms).</p>
+                  <h4 class="text-white font-bold mb-1">Motor de Cálculo em Tempo Real</h4>
+                  <p class="text-sm text-nexus-muted">Segregação exata de IBS e CBS com arredondamento regulamentar (Banker's Rounding) em menos de 25ms.</p>
                 </div>
               </li>
               <li class="flex gap-4 items-start">
-                <div class="w-10 h-10 rounded-lg bg-nexus-bg border border-nexus-border flex items-center justify-center text-nexus-secondary shrink-0 mt-1"><i class="fa-solid fa-server"></i></div>
+                <div class="w-10 h-10 rounded-lg bg-nexus-bg border border-nexus-border flex items-center justify-center text-nexus-secondary shrink-0 mt-1">
+                  <i class="fa-solid fa-server"></i>
+                </div>
                 <div>
-                  <h4 class="text-white font-bold mb-1">Gestão de Conectividade</h4>
-                  <p class="text-sm text-nexus-muted">Hospedamos os túneis VPN, o tráfego mTLS e os cofres criptográficos (KMS/JWKS) exigidos pela Receita e CGIBS.</p>
+                  <h4 class="text-white font-bold mb-1">Conectividade e Criptografia Pronta</h4>
+                  <p class="text-sm text-nexus-muted">Gerenciamento automatizado de certificados mTLS, assinaturas digitais JWS e credenciais governamentais.</p>
                 </div>
               </li>
             </ul>
@@ -170,53 +191,57 @@
       </div>
     </section>
 
-    <!-- 3. Para Quem É a Nossa API -->
+    <!-- 3. Para Quem Construímos -->
     <section id="publico" class="py-24 bg-nexus-card/30 border-y border-nexus-border/50 relative overflow-hidden">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16">
           <h2 class="text-nexus-success font-mono text-sm font-bold uppercase tracking-wider mb-2">Para Quem Construímos</h2>
-          <p class="text-3xl md:text-4xl font-bold text-white">Uma infraestrutura desenhada para cada elo do ecossistema de pagamentos.</p>
+          <p class="text-3xl md:text-4xl font-bold text-white">Uma camada de inteligência desenhada para cada participante do ecossistema.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           
+          <!-- Card 1 -->
           <div class="bg-nexus-bg border border-nexus-border p-6 rounded-2xl hover:border-nexus-primary transition-all hover:-translate-y-1 shadow-lg group">
             <div class="w-12 h-12 rounded-lg bg-nexus-primary/20 border border-nexus-primary/30 flex items-center justify-center text-nexus-primary text-xl mb-5 group-hover:scale-110 transition-transform">
               <i class="fa-solid fa-credit-card"></i>
             </div>
             <h3 class="text-xl font-bold text-white mb-3">Adquirentes & Subs</h3>
             <p class="text-sm text-nexus-muted leading-relaxed">
-              Não trave o seu motor de autorização. A nossa API calcula o Split de impostos (IBS/CBS) em <strong>&lt; 25ms</strong>, separando a fatia do Fisco sem criar latência no momento da passagem do cartão pelo seu cliente.
+              Mantenha o seu motor de autorização veloz. A API divide as alíquotas de IBS/CBS sem adicionar fricção na maquineta ou no gateway de checkout.
             </p>
           </div>
 
+          <!-- Card 2 -->
           <div class="bg-nexus-bg border border-nexus-border p-6 rounded-2xl hover:border-nexus-secondary transition-all hover:-translate-y-1 shadow-lg group">
             <div class="w-12 h-12 rounded-lg bg-nexus-secondary/20 border border-nexus-secondary/30 flex items-center justify-center text-nexus-secondary text-xl mb-5 group-hover:scale-110 transition-transform">
               <i class="fa-solid fa-building-columns"></i>
             </div>
-            <h3 class="text-xl font-bold text-white mb-3">Emissores e Bancos</h3>
+            <h3 class="text-xl font-bold text-white mb-3">Emissores & Bancos</h3>
             <p class="text-sm text-nexus-muted leading-relaxed">
-              Tanto nas transferências PIX quanto nas liquidações de cartões, saiba exatamente quanto liquidar na conta do recebedor e quanto reter para a conta do Governo. Garantia matemática de compliance.
+              Tanto em transações Pix quanto na liquidação de cartões, saiba exatamente quanto liquidar ao lojista e quanto direcionar aos cofres públicos.
             </p>
           </div>
 
+          <!-- Card 3 -->
           <div class="bg-nexus-bg border border-nexus-border p-6 rounded-2xl hover:border-nexus-success transition-all hover:-translate-y-1 shadow-lg group">
             <div class="w-12 h-12 rounded-lg bg-nexus-success/20 border border-nexus-success/30 flex items-center justify-center text-nexus-success text-xl mb-5 group-hover:scale-110 transition-transform">
               <i class="fa-solid fa-laptop-code"></i>
             </div>
-            <h3 class="text-xl font-bold text-white mb-3">ERPs e Sistemas</h3>
+            <h3 class="text-xl font-bold text-white mb-3">ERPs & Software</h3>
             <p class="text-sm text-nexus-muted leading-relaxed">
-              Ofereça adequação tributária instantânea aos seus milhares de clientes. Com uma única integração Plug-and-Play White-label, o seu software gere todo o recolhimento de forma invisível.
+              Entregue compliance aos seus clientes corporativos como diferencial competitivo. Uma integração White-label embutida direto na sua emissão.
             </p>
           </div>
 
+          <!-- Card 4 -->
           <div class="bg-nexus-bg border border-nexus-border p-6 rounded-2xl hover:border-amber-500 transition-all hover:-translate-y-1 shadow-lg group">
             <div class="w-12 h-12 rounded-lg bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-500 text-xl mb-5 group-hover:scale-110 transition-transform">
               <i class="fa-solid fa-store"></i>
             </div>
-            <h3 class="text-xl font-bold text-white mb-3">Lojistas e Varejo</h3>
+            <h3 class="text-xl font-bold text-white mb-3">Marketplaces</h3>
             <p class="text-sm text-nexus-muted leading-relaxed">
-              Venda sem dores de cabeça com a contabilidade. A NexusTax garante que a conciliação das suas vendas mostra o valor líquido real e imediato, sem surpresas com bitributação ou multas da Receita.
+              Conciliação multi-seller sem risco de bitributação. Distribuição automática de comissões líquidas e impostos de milhares de lojistas parceiros.
             </p>
           </div>
 
@@ -224,49 +249,94 @@
       </div>
     </section>
 
-    <!-- 4. A Dor (Problema) -->
-    <section id="problema" class="py-24">
+    <!-- 4. Construir In-House vs Integrar NexusTax (Build vs Buy) -->
+    <section id="comparativo" class="py-24">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-nexus-danger font-mono text-sm font-bold uppercase tracking-wider mb-2">Construir In-House?</h2>
-          <p class="text-3xl md:text-4xl font-bold text-white">O Governo não oferece uma API simples. A NexusTax sim.</p>
+          <h2 class="text-nexus-danger font-mono text-sm font-bold uppercase tracking-wider mb-2">Build vs. Buy</h2>
+          <p class="text-3xl md:text-4xl font-bold text-white mb-4">Construir internamente ou plugar uma infraestrutura pronta?</p>
+          <p class="text-nexus-muted text-base sm:text-lg">Entenda o impacto financeiro, operacional e regulatório na sua empresa.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="bg-nexus-card border border-nexus-border rounded-2xl p-8 hover:border-nexus-danger/50 transition-colors group">
-            <div class="w-14 h-14 rounded-xl bg-nexus-danger/10 border border-nexus-danger/20 flex items-center justify-center mb-6 text-nexus-danger text-2xl group-hover:scale-110 transition-transform">
-              <i class="fa-solid fa-network-wired"></i>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          
+          <!-- Coluna 1: Construir In-House -->
+          <div class="bg-nexus-card/70 border border-red-900/40 rounded-2xl p-8 relative overflow-hidden">
+            <div class="flex items-center justify-between pb-6 border-b border-red-950/60 mb-6">
+              <div>
+                <span class="text-xs font-mono uppercase tracking-wider text-red-400 font-bold block mb-1">Cenário Tradicional</span>
+                <h3 class="text-2xl font-bold text-white">Desenvolver In-House</h3>
+              </div>
+              <div class="w-10 h-10 rounded-full bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400">
+                <i class="fa-solid fa-xmark text-lg"></i>
+              </div>
             </div>
-            <h3 class="text-xl font-bold mb-3 text-white">Infraestrutura Pesada</h3>
-            <p class="text-nexus-muted leading-relaxed">A Receita Federal exige túneis VPN IPsec dedicados com roteamento dinâmico BGP e SNAT. Um pesadelo de engenharia de redes para manter 24/7.</p>
+
+            <ul class="space-y-4 text-sm text-slate-300">
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-triangle-exclamation text-red-400 mt-1 shrink-0"></i>
+                <span><strong>6 a 9 meses de desenvolvimento:</strong> Desvio de foco de engenharia e atraso nos produtos principais da empresa.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-triangle-exclamation text-red-400 mt-1 shrink-0"></i>
+                <span><strong>Alto custo de manutenção:</strong> Equipe dedicada para atualizar regras de 5.570 municípios e novos decretos fiscais.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-triangle-exclamation text-red-400 mt-1 shrink-0"></i>
+                <span><strong>Risco direto de penalidades:</strong> Se o motor cometer erros de cálculo, a responsabilidade de glosa recai sobre sua empresa.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-triangle-exclamation text-red-400 mt-1 shrink-0"></i>
+                <span><strong>Infraestrutura de rede complexa:</strong> Túneis VPN IPsec, criptografia mTLS e contingência 24/7 com o Fisco.</span>
+              </li>
+            </ul>
           </div>
 
-          <div class="bg-nexus-card border border-nexus-border rounded-2xl p-8 hover:border-nexus-danger/50 transition-colors group">
-            <div class="w-14 h-14 rounded-xl bg-nexus-danger/10 border border-nexus-danger/20 flex items-center justify-center mb-6 text-nexus-danger text-2xl group-hover:scale-110 transition-transform">
-              <i class="fa-solid fa-file-signature"></i>
+          <!-- Coluna 2: NexusTax API -->
+          <div class="bg-nexus-card border border-nexus-primary/50 rounded-2xl p-8 relative overflow-hidden shadow-2xl shadow-indigo-950/40">
+            <div class="absolute -top-12 -right-12 w-40 h-40 bg-nexus-primary/20 blur-3xl rounded-full"></div>
+            
+            <div class="flex items-center justify-between pb-6 border-b border-nexus-border mb-6 relative z-10">
+              <div>
+                <span class="text-xs font-mono uppercase tracking-wider text-nexus-secondary font-bold block mb-1">Cenário Eficiente</span>
+                <h3 class="text-2xl font-bold text-white">Integrar a NexusTax API</h3>
+              </div>
+              <div class="w-10 h-10 rounded-full bg-nexus-success/15 border border-nexus-success/40 flex items-center justify-center text-nexus-success">
+                <i class="fa-solid fa-check text-lg"></i>
+              </div>
             </div>
-            <h3 class="text-xl font-bold mb-3 text-white">Segurança Militar</h3>
-            <p class="text-nexus-muted leading-relaxed">Cada requisição exige certificados mTLS, canonicalização JSON estrita (RFC 8785), assinaturas JWS e gestão pública de chaves (JWKS).</p>
+
+            <ul class="space-y-4 text-sm text-slate-200 relative z-10">
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-circle-check text-nexus-success mt-1 shrink-0"></i>
+                <span><strong>Integração em menos de 72 horas:</strong> SDKs e endpoints REST modernos prontos para teste imediato.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-circle-check text-nexus-success mt-1 shrink-0"></i>
+                <span><strong>Atualizações automáticas contínuas:</strong> Regras tributárias mantidas e sincronizadas em tempo real pela nossa equipe.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-circle-check text-nexus-success mt-1 shrink-0"></i>
+                <span><strong>Latência ultra baixa (&lt; 25ms):</strong> Processamento em memória que não afeta a taxa de conversão do seu checkout.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-circle-check text-nexus-success mt-1 shrink-0"></i>
+                <span><strong>Custódia zero:</strong> Não intermediamos valores. Você mantém 100% do controle financeiro sobre seus clientes.</span>
+              </li>
+            </ul>
           </div>
 
-          <div class="bg-nexus-card border border-nexus-border rounded-2xl p-8 hover:border-nexus-danger/50 transition-colors group">
-            <div class="w-14 h-14 rounded-xl bg-nexus-danger/10 border border-nexus-danger/20 flex items-center justify-center mb-6 text-nexus-danger text-2xl group-hover:scale-110 transition-transform">
-              <i class="fa-solid fa-hourglass-half"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-3 text-white">Risco de Lentidão</h3>
-            <p class="text-nexus-muted leading-relaxed">O modelo "Super Inteligente" impõe conexões assíncronas (Long Polling) e SLAs de 5 minutos. Quedas no Governo podem travar o seu checkout.</p>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- 5. A Solução -->
+    <!-- 5. A Solução e Pilares -->
     <section id="solucao" class="py-24 bg-nexus-card/30 border-y border-nexus-border/50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-nexus-primary font-mono text-sm font-bold uppercase tracking-wider mb-2">A Plataforma</h2>
-          <p class="text-3xl md:text-4xl font-bold text-white mb-4">A "AWS" do Split Payment. <br/>Zero regulação, 100% de performance.</p>
-          <p class="text-nexus-muted text-lg">Como Provider White-label, processamos a engenharia enquanto a sua empresa mantém o controlo total da operação financeira.</p>
+          <h2 class="text-nexus-primary font-mono text-sm font-bold uppercase tracking-wider mb-2">A Solução</h2>
+          <p class="text-3xl md:text-4xl font-bold text-white mb-4">A camada de software para pagamentos na Reforma Tributária.</p>
+          <p class="text-nexus-muted text-lg">Processamos a matemática e a conformidade para que você continue focando no seu produto.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -276,8 +346,8 @@
               <i class="fa-solid fa-bolt"></i>
             </div>
             <div>
-              <h4 class="text-xl font-bold text-white mb-2">Cálculo em &lt; 25ms</h4>
-              <p class="text-nexus-muted">Motor In-Memory (Go + Redis) carrega as regras de 5.570 municípios. Calcula a proporção exata e aprova a sua venda em tempo real.</p>
+              <h4 class="text-xl font-bold text-white mb-2">Resposta em Menos de 25ms</h4>
+              <p class="text-nexus-muted">Motor distribuído em Go com dados carregados em memória para não travar a esteira de cartões ou Pix.</p>
             </div>
           </div>
 
@@ -286,8 +356,8 @@
               <i class="fa-solid fa-vault"></i>
             </div>
             <div>
-              <h4 class="text-xl font-bold text-white mb-2">Cofre Multi-Tenant (KMS)</h4>
-              <p class="text-nexus-muted">Guardamos os seus certificados e-CNPJ A1 em segurança de hardware. Assinamos as requisições em background com zero risco de vazamento.</p>
+              <h4 class="text-xl font-bold text-white mb-2">Cofre Criptográfico Dedicado</h4>
+              <p class="text-nexus-muted">Segurança de chaves digitais e-CNPJ A1 em módulos de hardware com assinatura em lote sem vazamento.</p>
             </div>
           </div>
 
@@ -296,8 +366,8 @@
               <i class="fa-solid fa-key"></i>
             </div>
             <div>
-              <h4 class="text-xl font-bold text-white mb-2">JWKS as a Service</h4>
-              <p class="text-nexus-muted">Geramos, expomos e rotacionamos as chaves públicas exigidas pela Receita Federal automaticamente. Basta copiar a URL para o Governo.</p>
+              <h4 class="text-xl font-bold text-white mb-2">Publicação de Chaves Automática (JWKS)</h4>
+              <p class="text-nexus-muted">Geração e rotação das chaves públicas que a Receita Federal exige para validação de integridade.</p>
             </div>
           </div>
 
@@ -306,8 +376,8 @@
               <i class="fa-solid fa-shield-halved"></i>
             </div>
             <div>
-              <h4 class="text-xl font-bold text-white mb-2">Resiliência Absoluta</h4>
-              <p class="text-nexus-muted">Se a Receita Federal ficar offline, os nossos Circuit Breakers e filas Kafka (com backoff exponencial) absorvem o impacto. A sua maquininha não para.</p>
+              <h4 class="text-xl font-bold text-white mb-2">Resiliência e Circuit Breakers</h4>
+              <p class="text-nexus-muted">Se os sistemas governamentais ficarem instáveis, filas de contingência absorvem as requisições para a maquininha nunca parar.</p>
             </div>
           </div>
 
@@ -315,11 +385,12 @@
       </div>
     </section>
 
-    <!-- 6. O Fluxo -->
+    <!-- 6. O Fluxo Visual em 4 Passos -->
     <section class="py-24 overflow-hidden">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-white">Como funciona na prática</h2>
+          <h2 class="text-3xl md:text-4xl font-bold text-white">Como a NexusTax opera na prática</h2>
+          <p class="text-nexus-muted mt-2">Um fluxo fluido sem alteração no relacionamento entre você e seu cliente.</p>
         </div>
 
         <div class="relative max-w-5xl mx-auto">
@@ -329,22 +400,24 @@
             <div class="bg-nexus-card border border-nexus-border p-6 rounded-xl text-center shadow-xl">
               <div class="w-10 h-10 mx-auto rounded-full bg-nexus-bg border-2 border-nexus-secondary flex items-center justify-center font-bold mb-4">1</div>
               <h4 class="font-bold text-white mb-2">Checkout / PDV</h4>
-              <p class="text-sm text-nexus-muted">A sua Adquirente/ERP envia um simples JSON com o valor da venda, NCM e CEP.</p>
+              <p class="text-sm text-nexus-muted">A sua Adquirente ou ERP envia um JSON simples com o valor, NCM do item e CEP.</p>
             </div>
             <div class="bg-nexus-card border border-nexus-border p-6 rounded-xl text-center shadow-xl">
               <div class="w-10 h-10 mx-auto rounded-full bg-nexus-bg border-2 border-nexus-primary flex items-center justify-center font-bold mb-4">2</div>
-              <h4 class="font-bold text-white mb-2">NexusTax API</h4>
-              <p class="text-sm text-nexus-muted">A API calcula a segregação exata (IBS/CBS) usando Banker's Rounding em &lt; 25ms.</p>
+              <h4 class="font-bold text-white mb-2">Cálculo &lt; 25ms</h4>
+              <p class="text-sm text-nexus-muted">A NexusTax calcula as retenções de IBS e CBS considerando estado e município de destino.</p>
             </div>
             <div class="bg-nexus-card border border-nexus-border p-6 rounded-xl text-center shadow-xl">
               <div class="w-10 h-10 mx-auto rounded-full bg-nexus-bg border-2 border-nexus-success flex items-center justify-center font-bold mb-4">3</div>
-              <h4 class="font-bold text-white mb-2">Aprovação Instantânea</h4>
-              <p class="text-sm text-nexus-muted">Devolvemos a instrução de rateio. A venda é aprovada no seu cliente sem atrasos.</p>
+              <h4 class="font-bold text-white mb-2">Aprovação da Venda</h4>
+              <p class="text-sm text-nexus-muted">Retornamos as instruções de rateio e a transação é aprovada no balcão sem demora.</p>
             </div>
             <div class="bg-nexus-card border border-nexus-border p-6 rounded-xl text-center shadow-xl ring-2 ring-nexus-primary/20">
-              <div class="w-10 h-10 mx-auto rounded-full bg-nexus-primary border-2 border-indigo-300 flex items-center justify-center font-bold mb-4 text-white"><i class="fa-solid fa-building-columns"></i></div>
-              <h4 class="font-bold text-white mb-2">Governo Federal</h4>
-              <p class="text-sm text-nexus-muted">Em background, os nossos Workers assinam os lotes via JWS e enviam para a Plataforma Pública.</p>
+              <div class="w-10 h-10 mx-auto rounded-full bg-nexus-primary border-2 border-indigo-300 flex items-center justify-center font-bold mb-4 text-white">
+                <i class="fa-solid fa-building-columns"></i>
+              </div>
+              <h4 class="font-bold text-white mb-2">Conexão Fisco</h4>
+              <p class="text-sm text-nexus-muted">Em segundo plano, os relatórios são assinados via JWS e sincronizados com os órgãos tributários.</p>
             </div>
           </div>
         </div>
@@ -355,9 +428,9 @@
     <section id="simulador" class="py-24 bg-nexus-card/30 border-y border-nexus-border/50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-nexus-success font-mono text-sm font-bold uppercase tracking-wider mb-2">Sandbox de Retenção</h2>
+          <h2 class="text-nexus-success font-mono text-sm font-bold uppercase tracking-wider mb-2">Sandbox de Demonstração</h2>
           <p class="text-3xl md:text-4xl font-bold text-white mb-4">Simulador de Split ao Vivo</p>
-          <p class="text-nexus-muted text-lg">Experimente a decomposição automática entre a fatia do comerciante e a partição do Fisco em tempo real.</p>
+          <p class="text-nexus-muted text-lg">Teste a segregação instantânea entre a fatia do comerciante e a partição tributária.</p>
         </div>
 
         <div class="bg-nexus-bg border border-nexus-border rounded-2xl p-6 md:p-10 shadow-2xl">
@@ -367,22 +440,22 @@
             <div>
               <label class="block font-mono text-xs font-semibold text-nexus-muted uppercase tracking-wider mb-3">Cenários Fiscais de Demonstração</label>
               <div class="flex flex-wrap gap-2 mb-8">
-                <button onclick="applyPreset(100, '2202.10.00', 32.0, 'Bebidas (Imposto Seletivo)')" class="px-3 py-1.5 rounded-md text-xs font-medium bg-nexus-card border border-nexus-border hover:border-nexus-secondary hover:text-white transition-colors">Bebida (Seletivo)</button>
-                <button onclick="applyPreset(50, '1006.30.21', 0.0, 'Cesta Básica Nacional (Alíquota Zero)')" class="px-3 py-1.5 rounded-md text-xs font-medium bg-nexus-card border border-nexus-border hover:border-nexus-secondary hover:text-white transition-colors">Cesta Básica (0%)</button>
-                <button onclick="applyPreset(1200, '8517.13.00', 26.5, 'Eletrónicos (Alíquota de Referência)')" class="px-3 py-1.5 rounded-md text-xs font-medium bg-nexus-card border border-nexus-border hover:border-nexus-secondary hover:text-white transition-colors">Smartphone (Padrão)</button>
+                <button type="button" onclick="applyPreset(100, '2202.10.00', 32.0, 'Bebidas (Imposto Seletivo)')" class="px-3 py-1.5 rounded-md text-xs font-medium bg-nexus-card border border-nexus-border hover:border-nexus-secondary hover:text-white transition-colors">Bebida (Seletivo 32%)</button>
+                <button type="button" onclick="applyPreset(50, '1006.30.21', 0.0, 'Cesta Básica Nacional (Alíquota Zero)')" class="px-3 py-1.5 rounded-md text-xs font-medium bg-nexus-card border border-nexus-border hover:border-nexus-secondary hover:text-white transition-colors">Cesta Básica (0%)</button>
+                <button type="button" onclick="applyPreset(1200, '8517.13.00', 26.5, 'Eletrônicos (Alíquota de Referência)')" class="px-3 py-1.5 rounded-md text-xs font-medium bg-nexus-card border border-nexus-border hover:border-nexus-secondary hover:text-white transition-colors">Smartphone (26.5%)</button>
               </div>
 
               <div class="space-y-5">
                 <div>
                   <label class="block text-sm font-medium text-slate-300 mb-1">Valor da Venda (R$)</label>
-                  <input type="number" id="sim-val" value="100.00" oninput="execCalc()" class="w-full bg-nexus-card border border-nexus-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-nexus-primary focus:ring-1 focus:ring-nexus-primary transition-all" />
+                  <input type="number" id="sim-val" value="100.00" step="10" oninput="execCalc()" class="w-full bg-nexus-card border border-nexus-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-nexus-primary focus:ring-1 focus:ring-nexus-primary transition-all" />
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-slate-300 mb-1">Código NCM</label>
+                  <label class="block text-sm font-medium text-slate-300 mb-1">Código NCM Identificado</label>
                   <input type="text" id="sim-ncm" value="8517.13.00" readonly class="w-full bg-nexus-card/50 border border-nexus-border rounded-lg px-4 py-3 text-nexus-muted cursor-not-allowed" />
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-slate-300 mb-1">Município / Estado de Destino</label>
+                  <label class="block text-sm font-medium text-slate-300 mb-1">Município e Estado de Destino</label>
                   <select id="sim-uf" onchange="execCalc()" class="w-full bg-nexus-card border border-nexus-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-nexus-primary focus:ring-1 focus:ring-nexus-primary transition-all appearance-none">
                     <option value="SE">Aracaju (SE)</option>
                     <option value="SP">São Paulo (SP)</option>
@@ -396,16 +469,16 @@
             <!-- Display de Resultado -->
             <div class="bg-nexus-card border border-nexus-border rounded-xl p-6 md:p-8 flex flex-col gap-6">
               <div class="flex justify-between items-center pb-4 border-b border-nexus-border font-mono text-sm">
-                <span class="text-nexus-success flex items-center gap-2"><i class="fa-solid fa-circle-check"></i> Motor: 200 OK</span>
+                <span class="text-nexus-success flex items-center gap-2"><i class="fa-solid fa-circle-check"></i> Status: 200 OK</span>
                 <span id="display-latency" class="text-nexus-secondary">Latência: 19ms</span>
               </div>
 
               <div>
                 <div class="flex justify-between text-sm mb-2 text-nexus-muted font-medium">
-                  <span>Roteamento Percentual</span>
+                  <span>Partição da Transação</span>
                   <span id="display-ratio">73.5% Lojista / 26.5% Tributos</span>
                 </div>
-                <div class="flex h-3 bg-nexus-bg rounded-full overflow-hidden">
+                <div class="flex h-3.5 bg-nexus-bg rounded-full overflow-hidden">
                   <div id="bar-merchant" class="bg-gradient-to-r from-nexus-secondary to-nexus-success w-[73.5%] transition-all duration-300"></div>
                   <div id="bar-tax" class="bg-gradient-to-r from-amber-500 to-nexus-danger w-[26.5%] transition-all duration-300"></div>
                 </div>
@@ -423,7 +496,7 @@
               </div>
 
               <div class="pt-4 border-t border-nexus-border font-mono text-xs text-nexus-muted">
-                Enquadramento: <span id="display-regime" class="text-white">Eletrónicos (Alíquota de Referência)</span>
+                Classificação: <span id="display-regime" class="text-white">Eletrônicos (Alíquota de Referência)</span>
               </div>
             </div>
 
@@ -439,19 +512,19 @@
           
           <div>
             <h2 class="text-nexus-secondary font-mono text-sm font-bold uppercase tracking-wider mb-2">Developer-First</h2>
-            <p class="text-3xl md:text-4xl font-bold text-white mb-6">Integração desenhada para quem programa.</p>
+            <p class="text-3xl md:text-4xl font-bold text-white mb-6">Integração desenhada por quem programa.</p>
             <p class="text-nexus-muted text-lg mb-8 leading-relaxed">
-              A complexidade da assinatura JWS (RFC 8785) e do certificado mTLS ICP-Brasil fica 100% do nosso lado. A sua equipa apenas precisa de enviar um JSON simples e nós devolvemos os cêntimos exatos para o rateio.
+              Toda a complexidade de autenticação mTLS ICP-Brasil e canonização de JSON (RFC 8785) fica do nosso lado. A sua equipe consome endpoints REST limpos e previsíveis.
             </p>
             
             <ul class="space-y-4 mb-8 text-nexus-muted">
-              <li class="flex items-center gap-3"><i class="fa-solid fa-check text-nexus-success"></i> Autenticação via JWT RS256 simples.</li>
-              <li class="flex items-center gap-3"><i class="fa-solid fa-check text-nexus-success"></i> Tratamento de erros RFC 7807 padrão de mercado.</li>
-              <li class="flex items-center gap-3"><i class="fa-solid fa-check text-nexus-success"></i> Endpoints idempotentes garantem zero bitributação.</li>
+              <li class="flex items-center gap-3"><i class="fa-solid fa-check text-nexus-success"></i> Autenticação simplificada via JWT Bearer Token.</li>
+              <li class="flex items-center gap-3"><i class="fa-solid fa-check text-nexus-success"></i> Tratamento de erros no padrão RFC 7807 (Problem Details).</li>
+              <li class="flex items-center gap-3"><i class="fa-solid fa-check text-nexus-success"></i> Endpoints idempotentes para blindar contra duplicidade.</li>
             </ul>
 
             <a href="#contato" class="inline-flex items-center gap-2 text-nexus-primary font-semibold hover:text-indigo-400 transition-colors">
-              Explorar a Referência da API <i class="fa-solid fa-arrow-right"></i>
+              Solicitar Documentação da API <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
 
@@ -459,14 +532,14 @@
           <div class="bg-[#05070d] border border-nexus-border rounded-xl shadow-2xl overflow-hidden font-mono text-sm">
             <div class="flex justify-between items-center bg-[#0b0f19] px-4 py-3 border-b border-nexus-border">
               <div class="flex gap-2">
-                <button onclick="setCodeLang('curl', this)" class="tab-btn active px-3 py-1 rounded text-white bg-slate-800 border border-slate-700 transition-colors">cURL</button>
-                <button onclick="setCodeLang('node', this)" class="tab-btn px-3 py-1 rounded text-nexus-muted border border-transparent hover:text-white transition-colors">Node.js</button>
-                <button onclick="setCodeLang('go', this)" class="tab-btn px-3 py-1 rounded text-nexus-muted border border-transparent hover:text-white transition-colors">Go</button>
+                <button type="button" onclick="setCodeLang('curl', this)" class="tab-btn active px-3 py-1 rounded text-white bg-slate-800 border border-slate-700 transition-colors">cURL</button>
+                <button type="button" onclick="setCodeLang('node', this)" class="tab-btn px-3 py-1 rounded text-nexus-muted border border-transparent hover:text-white transition-colors">Node.js</button>
+                <button type="button" onclick="setCodeLang('go', this)" class="tab-btn px-3 py-1 rounded text-nexus-muted border border-transparent hover:text-white transition-colors">Go</button>
               </div>
               <span class="text-xs text-nexus-muted">POST /v1/splits/calculate</span>
             </div>
             <div class="p-6 overflow-x-auto text-slate-300">
-<pre id="code-content" class="leading-relaxed">curl -X POST https://api.nexustax.com.br/v1/splits/calculate \
+<pre id="code-content" class="leading-relaxed">curl -X POST https://api.nexustaxapi.com.br/v1/splits/calculate \
   -H "Authorization: Bearer test_8f29e12..." \
   -H "Content-Type: application/json" \
   -d '{
@@ -483,16 +556,16 @@
       </div>
     </section>
 
-    <!-- 9. Contato / Form com Web3Forms e Validação -->
+    <!-- 9. Formulário de Captura Conectado ao Web3Forms -->
     <section id="contato" class="py-32 relative overflow-hidden bg-nexus-card/50 border-t border-nexus-border">
       <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-nexus-primary/20 via-nexus-bg to-nexus-bg -z-10"></div>
       
       <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6">O relógio da Reforma Tributária já está a contar.</h2>
-        <p class="text-xl text-nexus-muted mb-10">A fase de testes do Banco Central arranca em Novembro. Garanta a infraestrutura de Split Payment da sua operação hoje e acesse o nosso ambiente de testes.</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6">O cronograma da Reforma Tributária começou.</h2>
+        <p class="text-xl text-nexus-muted mb-10">Os testes do Banco Central já estão em andamento. Garanta a infraestrutura de Split Payment da sua operação hoje com atendimento prioritário.</p>
         
         <form id="leadForm" class="bg-nexus-bg border border-nexus-border rounded-2xl p-8 shadow-2xl text-left">
-          <!-- Web3Forms Config Key -->
+          <!-- Chave Web3Forms vinculada ao contato@nexustaxapi.com.br -->
           <input type="hidden" name="access_key" value="aeed105b-3c0c-4c5b-983a-71f141b47f9f">
           <input type="hidden" name="subject" value="Novo Lead - Acesso Antecipado NexusTax API">
           <input type="hidden" name="from_name" value="NexusTax Landing Page">
@@ -546,8 +619,12 @@
             Garantir Acesso Antecipado
           </button>
 
+          <!-- Mensagem de Confirmação In-Page -->
           <div id="msg-ok" class="hidden mt-6 p-4 rounded-lg bg-nexus-success/10 border border-nexus-success/30 text-nexus-success text-center font-medium">
-            ✅ Solicitação recebida com sucesso! A nossa equipa entrará em contacto muito em breve para libertar o seu acesso.
+            ✅ Solicitação recebida com sucesso! A nossa equipe entrará em contato em breve para liberar as credenciais de teste.
+          </div>
+          <div id="msg-err" class="hidden mt-4 p-4 rounded-lg bg-nexus-danger/10 border border-nexus-danger/30 text-nexus-danger text-center font-medium">
+            Ocorreu um erro ao enviar. Por favor, tente novamente ou fale pelo WhatsApp.
           </div>
         </form>
       </div>
@@ -555,7 +632,7 @@
 
   </main>
 
-  <!-- Footer -->
+  <!-- Rodapé Institucional -->
   <footer class="bg-[#030509] border-t border-nexus-border py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
       <div class="flex items-center gap-2">
@@ -574,7 +651,9 @@
         <a href="https://wa.me/5579988216266" target="_blank" class="text-emerald-400 hover:text-emerald-300 transition-colors text-sm flex items-center gap-1">
           <i class="fa-brands fa-whatsapp text-lg"></i> +55 (79) 98821-6266
         </a>
-        <a href="https://github.com/almsilva0101-cpu/nexustax-landingpage" target="_blank" class="text-nexus-muted hover:text-white transition-colors"><i class="fa-brands fa-github text-xl"></i></a>
+        <a href="https://github.com/almsilva0101-cpu/nexustax-landingpage" target="_blank" class="text-nexus-muted hover:text-white transition-colors">
+          <i class="fa-brands fa-github text-xl"></i>
+        </a>
       </div>
     </div>
   </footer>
@@ -585,11 +664,11 @@
     <span>Falar no WhatsApp</span>
   </a>
 
-  <!-- Scripts -->
+  <!-- Scripts: Simulador, Tabs e AJAX Web3Forms com Máscara -->
   <script>
     // --- Lógica do Simulador ---
     let currentTaxRate = 26.5;
-    let currentRegimeText = "Eletrónicos (Alíquota de Referência)";
+    let currentRegimeText = "Eletrônicos (Alíquota de Referência)";
 
     function applyPreset(val, ncm, rate, label) {
       document.getElementById('sim-val').value = val.toFixed(2);
@@ -620,9 +699,9 @@
 
     execCalc();
 
-    // --- Lógica das Tabs de Código ---
+    // --- Tabs do Console de Código ---
     const codeExamples = {
-      curl: `curl -X POST https://api.nexustax.com.br/v1/splits/calculate \\
+      curl: `curl -X POST https://api.nexustaxapi.com.br/v1/splits/calculate \\
   -H "Authorization: Bearer test_8f29e12..." \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -680,7 +759,7 @@ func main() {
       btn.classList.remove('text-nexus-muted', 'border-transparent');
     }
 
-    // --- Máscara de Telefone Comercial (Fixo - 10 dígitos) ---
+    // --- Máscara de Telefone Comercial Fixo (10 dígitos) ---
     const telInput = document.getElementById('telefone');
     telInput.addEventListener('input', function (e) {
       let v = e.target.value.replace(/\D/g, '').substring(0, 10);
@@ -710,23 +789,25 @@ func main() {
       }
     });
 
-    // --- Envio Assíncrono com Web3Forms (sem tela branca) ---
+    // --- Submissão Assíncrona Web3Forms sem tela branca ---
     const form = document.getElementById('leadForm');
     const btnSubmit = document.getElementById('btnSubmit');
     const msgOk = document.getElementById('msg-ok');
+    const msgErr = document.getElementById('msg-err');
 
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
 
       const celDigits = celInput.value.replace(/\D/g, '');
       if (celDigits.length < 10) {
-        alert('Por favor, informe um número de WhatsApp ou celular válido com DDD.');
+        alert('Por favor, informe um número de celular ou WhatsApp válido com DDD.');
         celInput.focus();
         return;
       }
 
       btnSubmit.disabled = true;
-      btnSubmit.innerText = 'A processar solicitação...';
+      btnSubmit.innerText = 'Processando solicitação...';
+      msgErr.classList.add('hidden');
 
       const formData = new FormData(form);
       const json = JSON.stringify(Object.fromEntries(formData));
@@ -748,12 +829,14 @@ func main() {
           btnSubmit.style.display = 'none';
           msgOk.classList.remove('hidden');
         } else {
-          alert(result.message || 'Ocorreu um erro no envio. Tente novamente.');
+          msgErr.innerText = result.message || 'Ocorreu um erro no envio. Tente novamente.';
+          msgErr.classList.remove('hidden');
           btnSubmit.disabled = false;
           btnSubmit.innerText = 'Garantir Acesso Antecipado';
         }
       } catch (err) {
-        alert('Erro de conexão ao enviar o formulário.');
+        msgErr.innerText = 'Erro de conexão ao enviar o formulário. Fale pelo WhatsApp.';
+        msgErr.classList.remove('hidden');
         btnSubmit.disabled = false;
         btnSubmit.innerText = 'Garantir Acesso Antecipado';
       }
