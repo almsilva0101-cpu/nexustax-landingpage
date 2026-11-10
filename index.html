@@ -31,6 +31,7 @@
       background-color: var(--bg-dark);
       color: var(--text-main);
       line-height: 1.6;
+      scroll-behavior: smooth;
     }
 
     header {
@@ -262,10 +263,148 @@
       margin: 0;
     }
 
+    /* Secção de Destaques e Pilares */
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .features {
+      padding: 80px 8%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 30px;
+      border-radius: 14px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: #374151;
+    }
+
+    .feature-card .icon {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      display: inline-block;
+    }
+
+    .feature-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Secção Simulador */
+    .simulator-section {
+      padding: 80px 8%;
+      background: #0d1322;
+      border-top: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .simulator-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 35px;
+    }
+
+    .sim-slider-group {
+      margin-bottom: 30px;
+    }
+
+    .sim-slider-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .sim-slider-header span {
+      color: #818cf8;
+      font-size: 1.2rem;
+    }
+
+    input[type=range] {
+      width: 100%;
+      height: 6px;
+      background: #374151;
+      border-radius: 3px;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--primary);
+      cursor: pointer;
+    }
+
+    .sim-results {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      border-top: 1px solid var(--card-border);
+      padding-top: 25px;
+    }
+
+    .sim-result-card {
+      background: #1f2937;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .sim-result-card span {
+      display: block;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+    }
+
+    .sim-result-card strong {
+      font-size: 1.4rem;
+      color: var(--accent);
+    }
+
+    /* Rodapé */
     footer {
       border-top: 1px solid var(--card-border);
       padding: 50px 8%;
-      margin-top: 80px;
       background: #080b12;
       display: flex;
       flex-wrap: wrap;
@@ -337,6 +476,7 @@
       .hero h1 { font-size: 2.1rem; }
       nav { display: none; }
       .form-row { grid-template-columns: 1fr; }
+      .sim-results { grid-template-columns: 1fr; }
       footer { flex-direction: column; align-items: flex-start; }
       .footer-contacts { align-items: flex-start; }
     }
@@ -353,7 +493,8 @@
 
     <nav>
       <a href="#solucao">A Solução</a>
-      <a href="#cadastro">Acesso Antecipado</a>
+      <a href="#ecossistema">Ecossistema</a>
+      <a href="#simulador">Simulador</a>
       <a href="mailto:contato@nexustaxapi.com.br">Contato</a>
     </nav>
 
@@ -379,7 +520,7 @@
     <!-- Bloco do Formulário -->
     <section class="form-container" id="cadastro">
       <form id="leadForm">
-        <!-- Chave Web3Forms vinculada ao contato@nexustaxapi.com.br -->
+        <!-- Chave Web3Forms vinculada a contato@nexustaxapi.com.br -->
         <input type="hidden" name="access_key" value="aeed105b-3c0c-4c5b-983a-71f141b47f9f">
         <input type="hidden" name="subject" value="Novo Lead - Acesso Antecipado NexusTax API">
         <input type="hidden" name="from_name" value="NexusTax Landing Page">
@@ -403,7 +544,7 @@
           <input type="text" id="empresa" name="empresa" placeholder="Razão Social ou Nome Fantasia" required>
         </div>
 
-        <!-- Linha 3: Telefone Fixo e Celular / WhatsApp com máscaras numéricas -->
+        <!-- Linha 3: Telefone Fixo e Celular / WhatsApp -->
         <div class="form-row">
           <div class="form-group" style="margin-bottom: 0;">
             <label for="telefone">Telefone Comercial (Fixo)</label>
@@ -438,7 +579,88 @@
     </section>
   </main>
 
-  <!-- Rodapé -->
+  <!-- Secção: A Solução -->
+  <section class="features" id="solucao">
+    <div class="section-title">
+      <h2>Infraestrutura Pronta para o Novo Sistema Tributário</h2>
+      <p>Desenvolvida para processar a liquidação e segregação automática de CBS e IBS em tempo real.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="icon">⚡</div>
+        <h3>Split Payment em Tempo Real</h3>
+        <p>Segregação instantânea de tributos no momento da transação (Pix e Cartão), em total conformidade com as diretrizes do Banco Central e Receita Federal.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🛡️</div>
+        <h3>Zero Risco Fiscal</h3>
+        <p>Elimina passivos e glosas fiscais ao garantir o repasse correto aos entes tributantes antes da liquidação financeira ao recebedor final.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔌</div>
+        <h3>Integração Plug & Play</h3>
+        <p>Webhooks estruturados e endpoints REST modernos desenhados para fácil adoção em plataformas de subadquirência, marketplaces e ERPs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Secção: Simulador Financeiro -->
+  <section class="simulator-section" id="simulador">
+    <div class="section-title">
+      <h2>Simulador de Retenção Tributária</h2>
+      <p>Estime o impacto da liquidação com split automatizado na sua volumetria mensal.</p>
+    </div>
+
+    <div class="simulator-box">
+      <div class="sim-slider-group">
+        <div class="sim-slider-header">
+          <label for="volumeRange">Volume Mensal Transacionado</label>
+          <span id="volumeDisplay">R$ 500.000</span>
+        </div>
+        <input type="range" id="volumeRange" min="50000" max="10000000" step="50000" value="500000">
+      </div>
+
+      <div class="sim-results">
+        <div class="sim-result-card">
+          <span>Estimativa de Tributos Segregados (CBS/IBS ~27%)</span>
+          <strong id="taxSplitValue">R$ 135.000</strong>
+        </div>
+        <div class="sim-result-card">
+          <span>Volume Líquido Processado</span>
+          <strong id="netValue">R$ 365.000</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Secção: Ecossistema -->
+  <section class="features" id="ecossistema">
+    <div class="section-title">
+      <h2>Para Quem Foi Feita a NexusTax</h2>
+      <p>Uma camada de software universal adaptável aos principais participantes do arranjo de pagamentos.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="icon">💳</div>
+        <h3>Adquirentes & Subadquirentes</h3>
+        <p>Adequação sem necessidade de reescrever o core banking ou o motor de liquidação interno existente.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🛍️</div>
+        <h3>Marketplaces Multi-seller</h3>
+        <p>Divisão correta de comissões e impostos de milhares de sellers sem travar o fluxo de caixa da plataforma.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">💻</div>
+        <h3>ERPs e Plataformas SaaS</h3>
+        <p>Módulos prontos para embutir na sua esteira de faturamento e oferecer aos seus clientes B2B.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rodapé Institucional -->
   <footer>
     <div class="footer-brand">
       <div class="logo-text">Nexus<span>Tax</span> <span class="badge-api">API</span></div>
@@ -461,9 +683,9 @@
     Falar no WhatsApp
   </a>
 
-  <!-- Script de Validações e Envio Assíncrono -->
+  <!-- Scripts: Máscaras, Submissão Assíncrona e Simulador -->
   <script>
-    // Máscara para Telefone Fixo (10 dígitos)
+    // 1. Máscara Telefone Fixo (10 dígitos)
     const telInput = document.getElementById('telefone');
     telInput.addEventListener('input', function (e) {
       let v = e.target.value.replace(/\D/g, '').substring(0, 10);
@@ -478,7 +700,7 @@
       }
     });
 
-    // Máscara para Celular / WhatsApp (11 dígitos)
+    // 2. Máscara Celular / WhatsApp (11 dígitos)
     const celInput = document.getElementById('celular');
     celInput.addEventListener('input', function (e) {
       let v = e.target.value.replace(/\D/g, '').substring(0, 11);
@@ -493,7 +715,7 @@
       }
     });
 
-    // Submissão assíncrona
+    // 3. Submissão assíncrona Web3Forms
     const form = document.getElementById('leadForm');
     const btnSubmit = document.getElementById('btnSubmit');
     const successMessage = document.getElementById('successMessage');
@@ -540,6 +762,26 @@
         btnSubmit.disabled = false;
         btnSubmit.innerText = 'Garantir Acesso Antecipado';
       }
+    });
+
+    // 4. Lógica Interativa do Simulador de Split
+    const volumeSlider = document.getElementById('volumeRange');
+    const volumeDisplay = document.getElementById('volumeDisplay');
+    const taxSplitValue = document.getElementById('taxSplitValue');
+    const netValue = document.getElementById('netValue');
+
+    function formatBRL(val) {
+      return val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+    }
+
+    volumeSlider.addEventListener('input', function(e) {
+      const vol = parseFloat(e.target.value);
+      const tax = vol * 0.27;
+      const net = vol - tax;
+
+      volumeDisplay.innerText = formatBRL(vol);
+      taxSplitValue.innerText = formatBRL(tax);
+      netValue.innerText = formatBRL(net);
     });
   </script>
 
