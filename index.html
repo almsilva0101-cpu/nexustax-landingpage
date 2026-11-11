@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NexusTax | Motor de Split Payment On-Premise para a Reforma Tributária</title>
+  <title>NexusTax | Infraestrutura de Split Payment Dedicada (On-Premise & VPC)</title>
+  <meta name="description" content="Projetamos, construímos e entregamos a infraestrutura de inteligência e mensageria distribuída que conecta as plataformas de pagamento à soberania tributária na nova economia digital." />
   
-  <!-- Fonts -->
+  <!-- Fontes Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -21,841 +22,899 @@
         extend: {
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
-            mono: ['Fira Code', 'monospace'],
+            mono: ['JetBrains Mono', 'monospace'],
           },
           colors: {
             nexus: {
-              bg: '#050814',
-              card: '#0f1629',
+              bg: '#090d16',
+              card: '#0f172a',
               border: '#1e293b',
-              primary: '#4f46e5',   // Indigo 600
-              secondary: '#06b6d4', // Cyan 500
-              success: '#10b981',   // Emerald 500
-              danger: '#ef4444',    // Red 500
-              muted: '#94a3b8'     // Slate 400
+              primary: '#3b82f6',
+              secondary: '#06b6d4',
+              muted: '#94a3b8',
+              success: '#10b981',
+              warning: '#f59e0b',
+              danger: '#ef4444'
             }
-          },
-          backgroundImage: {
-            'glow-gradient': 'radial-gradient(circle at 50% 0%, rgba(79, 70, 229, 0.18), transparent 60%)',
           }
         }
       }
     }
   </script>
+
+  <style>
+    body {
+      background-color: #090d16;
+      color: #f8fafc;
+      font-family: 'Inter', sans-serif;
+    }
+    .grid-pattern {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(30, 41, 59, 0.35) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(30, 41, 59, 0.35) 1px, transparent 1px);
+    }
+    .glow-cyan {
+      box-shadow: 0 0 45px -10px rgba(6, 182, 212, 0.25);
+    }
+    .glow-blue {
+      box-shadow: 0 0 50px -10px rgba(59, 130, 246, 0.25);
+    }
+    input[type=range] {
+      accent-color: #06b6d4;
+    }
+  </style>
 </head>
-<body class="bg-nexus-bg text-slate-100 font-sans antialiased overflow-x-hidden relative selection:bg-nexus-primary selection:text-white">
-  
-  <!-- Background Glow Effect -->
-  <div class="absolute top-0 left-0 w-full h-[950px] bg-glow-gradient -z-10 pointer-events-none"></div>
+<body class="bg-nexus-bg text-slate-100 antialiased selection:bg-nexus-secondary selection:text-nexus-bg">
 
-  <!-- Navbar -->
-  <header class="fixed w-full top-0 z-50 bg-nexus-bg/85 backdrop-blur-md border-b border-nexus-border">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-20">
-        <!-- Logo -->
-        <a href="#" class="flex items-center gap-2 group">
-          <i class="fa-solid fa-layer-group text-nexus-secondary text-2xl group-hover:text-nexus-primary transition-colors"></i>
-          <span class="text-xl font-bold tracking-tight">Nexus<span class="text-nexus-secondary">Tax</span></span>
-          <span class="ml-2 px-2 py-0.5 rounded text-xs font-mono font-semibold bg-nexus-primary/20 text-nexus-secondary border border-nexus-secondary/30">ENGINE</span>
-        </a>
-
-        <!-- Desktop Menu -->
-        <nav class="hidden md:flex items-center gap-7">
-          <a href="#sobre" class="text-sm font-medium text-nexus-muted hover:text-white transition-colors">Quem Somos</a>
-          <a href="#vantagens" class="text-sm font-medium text-nexus-muted hover:text-white transition-colors">Por Que VPC?</a>
-          <a href="#arquitetura" class="text-sm font-medium text-nexus-muted hover:text-white transition-colors">Arquitetura</a>
-          <a href="#publico" class="text-sm font-medium text-nexus-muted hover:text-white transition-colors">Ecossistema</a>
-          <a href="#simulador" class="text-sm font-medium text-nexus-muted hover:text-white transition-colors">Simulador</a>
-          <a href="#entrega" class="text-sm font-medium text-nexus-muted hover:text-white transition-colors">Metodologia</a>
-        </nav>
-
-        <!-- CTA Header -->
-        <div class="flex items-center gap-4">
-          <a href="https://wa.me/5579988216266" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium text-emerald-400 bg-emerald-950/40 border border-emerald-800/40 hover:bg-emerald-900/50 transition-all">
-            <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i> Atendimento
-          </a>
-          <a href="#contato" class="px-5 py-2.5 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-nexus-primary to-indigo-500 hover:to-indigo-400 shadow-[0_0_15px_rgba(79,70,229,0.3)] transition-all transform hover:-translate-y-0.5">
-            Solicitar Implantação &rarr;
-          </a>
+  <!-- 1. Header Fixo com Blur -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-[#090d16]/85 backdrop-blur-md border-b border-nexus-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-nexus-secondary to-nexus-primary flex items-center justify-center text-white shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+          <i class="fa-solid fa-layer-group text-lg"></i>
         </div>
+        <div class="flex flex-col">
+          <span class="text-xl font-extrabold tracking-tight text-white font-sans">Nexus<span class="text-nexus-secondary">Tax</span></span>
+          <span class="text-[10px] font-mono text-nexus-muted tracking-widest uppercase">Infrastructure Foundry</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#sobre" class="hover:text-nexus-secondary transition-colors">Quem Somos</a>
+        <a href="#por-que-vpc" class="hover:text-nexus-secondary transition-colors">Por Que VPC?</a>
+        <a href="#cronograma" class="hover:text-nexus-secondary transition-colors">Prazos Fisco</a>
+        <a href="#simulador" class="hover:text-nexus-secondary transition-colors">Simulador</a>
+        <a href="#arquitetura" class="hover:text-nexus-secondary transition-colors">Código & API</a>
+        <a href="#metodologia" class="hover:text-nexus-secondary transition-colors">Metodologia</a>
+      </nav>
+
+      <div class="hidden sm:flex items-center gap-4">
+        <a href="#contato" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-nexus-primary to-indigo-600 hover:from-blue-600 hover:to-indigo-500 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 transition-all hover:scale-[1.02]">
+          Solicitar Implantação
+        </a>
       </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="lg:hidden text-slate-300 hover:text-white p-2" aria-label="Abrir Menu">
+        <i class="fa-solid fa-bars text-xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-nexus-card border-b border-nexus-border px-6 py-6 space-y-4">
+      <a href="#sobre" class="block text-sm font-medium text-slate-300 hover:text-nexus-secondary mobile-link">Quem Somos</a>
+      <a href="#por-que-vpc" class="block text-sm font-medium text-slate-300 hover:text-nexus-secondary mobile-link">Por Que VPC?</a>
+      <a href="#cronograma" class="block text-sm font-medium text-slate-300 hover:text-nexus-secondary mobile-link">Prazos Fisco</a>
+      <a href="#simulador" class="block text-sm font-medium text-slate-300 hover:text-nexus-secondary mobile-link">Simulador</a>
+      <a href="#arquitetura" class="block text-sm font-medium text-slate-300 hover:text-nexus-secondary mobile-link">Código & API</a>
+      <a href="#metodologia" class="block text-sm font-medium text-slate-300 hover:text-nexus-secondary mobile-link">Metodologia</a>
+      <a href="#contato" class="block w-full text-center py-3 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-nexus-primary to-indigo-600 mobile-link">
+        Solicitar Implantação
+      </a>
     </div>
   </header>
 
-  <main class="pt-20">
-    
-    <!-- 1. Hero Section -->
-    <section class="relative pt-20 pb-24 overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        
-        <!-- Status Badge -->
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-nexus-secondary/10 border border-nexus-secondary/30 text-nexus-secondary text-sm font-semibold mb-8">
-          <span class="w-2.5 h-2.5 rounded-full bg-nexus-success animate-pulse"></span>
-          Deploy Dedicado On-Premise • AWS, GCP, Azure ou Datacenter Próprio • LC 214/2025
+  <!-- 2. Hero Section -->
+  <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden grid-pattern">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-nexus-bg/75 to-nexus-bg pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      <!-- Hero Badge em Destaque Federal -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-nexus-card/90 border border-nexus-secondary/40 text-nexus-secondary text-xs sm:text-sm font-mono font-medium mb-8 shadow-lg shadow-cyan-500/10">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="text-white font-bold">Split Payment da Reforma Tributária</span> • Governo Federal do Brasil (LC 214/2025)
+      </div>
+
+      <!-- Título Principal -->
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-[1.18] max-w-5xl mx-auto text-white">
+        Projetamos, construímos e entregamos a 
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-nexus-secondary via-blue-400 to-indigo-400">
+          infraestrutura de inteligência e mensageria distribuída
+        </span>
+        que conecta as plataformas de pagamento à soberania tributária na nova economia digital.
+      </h1>
+
+      <!-- Subtítulo Enfatizando Split Payment & Governo Federal -->
+      <p class="max-w-3xl mx-auto text-base sm:text-lg md:text-xl text-nexus-muted mb-10 leading-relaxed font-normal">
+        A sua instituição traz a demanda e nós construímos e entregamos o motor sob medida de <strong>Split Payment da Reforma Tributária</strong> pronto para operar na sua infraestrutura privada. Segregação instantânea de IBS e CBS, retenção na fonte conforme as normas da Receita Federal e Banco Central, com zero tráfego de dados para nuvens externas.
+      </p>
+
+      <!-- Botões de Ação -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        <a href="#contato" class="w-full sm:w-auto px-8 py-4 rounded-xl text-base font-bold text-white bg-gradient-to-r from-nexus-primary to-indigo-600 hover:from-blue-600 hover:to-indigo-500 shadow-xl shadow-blue-500/25 hover:shadow-blue-500/40 transition-all hover:scale-105 flex items-center justify-center gap-3">
+          <i class="fa-solid fa-server"></i> Encomendar Motor de Split Payment
+        </a>
+        <a href="#cronograma" class="w-full sm:w-auto px-8 py-4 rounded-xl text-base font-semibold text-slate-200 bg-nexus-card hover:bg-slate-800 border border-nexus-border hover:border-slate-600 transition-all flex items-center justify-center gap-2">
+          Ver Cronograma Oficial LC 214 <i class="fa-solid fa-calendar-days text-xs text-nexus-secondary"></i>
+        </a>
+      </div>
+
+      <!-- 4 Métricas / Badges do Hero -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+        <div class="p-5 rounded-2xl bg-nexus-card/80 border border-nexus-border text-left hover:border-nexus-secondary/40 transition-colors">
+          <div class="text-xs font-mono uppercase text-nexus-muted mb-1">Hospedagem</div>
+          <div class="text-lg font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-cloud text-nexus-secondary"></i> Sua Própria VPC
+          </div>
+          <p class="text-xs text-nexus-muted mt-1.5">AWS, GCP, Azure ou Datacenter</p>
         </div>
 
-        <!-- Headline -->
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-[1.12] max-w-5xl mx-auto">
-          Motor de Split Payment pronto para deploy na 
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-nexus-secondary via-nexus-primary to-indigo-300">
-            infraestrutura da sua Adquirente ou ERP.
-          </span>
-        </h1>
-
-        <!-- Subheadline -->
-        <p class="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-nexus-muted mb-8 leading-relaxed">
-          Nós desenvolvemos, homologamos e entregamos o motor completo pronto para rodar na sua nuvem privada. <strong class="text-slate-100 font-semibold">Zero tráfego de dados sensíveis em servidores de terceiros</strong>, controle total do código e conformidade nativa com a Reforma Tributária.
-        </p>
-
-        <!-- Trust Badges Bar (Arquitetura) -->
-        <div class="max-w-4xl mx-auto mb-10 grid grid-cols-2 sm:grid-cols-4 gap-3 text-left">
-          <div class="p-3.5 rounded-xl bg-nexus-card/70 border border-nexus-border flex items-center gap-3">
-            <i class="fa-solid fa-server text-nexus-secondary text-xl"></i>
-            <div>
-              <div class="text-xs text-nexus-muted">Hospedagem</div>
-              <div class="text-sm font-bold text-white">Sua Própria VPC</div>
-            </div>
+        <div class="p-5 rounded-2xl bg-nexus-card/80 border border-nexus-border text-left hover:border-nexus-secondary/40 transition-colors">
+          <div class="text-xs font-mono uppercase text-nexus-muted mb-1">Latência Interna</div>
+          <div class="text-lg font-bold text-nexus-success flex items-center gap-2">
+            <i class="fa-solid fa-bolt text-nexus-success"></i> &lt; 5ms em Rede Local
           </div>
-          <div class="p-3.5 rounded-xl bg-nexus-card/70 border border-nexus-border flex items-center gap-3">
-            <i class="fa-solid fa-gauge-high text-nexus-success text-xl"></i>
-            <div>
-              <div class="text-xs text-nexus-muted">Latência Interna</div>
-              <div class="text-sm font-bold text-white">&lt; 5ms em Rede Local</div>
-            </div>
-          </div>
-          <div class="p-3.5 rounded-xl bg-nexus-card/70 border border-nexus-border flex items-center gap-3">
-            <i class="fa-solid fa-lock text-nexus-primary text-xl"></i>
-            <div>
-              <div class="text-xs text-nexus-muted">Segurança & LGPD</div>
-              <div class="text-sm font-bold text-white">Dados 100% Seus</div>
-            </div>
-          </div>
-          <div class="p-3.5 rounded-xl bg-nexus-card/70 border border-nexus-border flex items-center gap-3">
-            <i class="fa-solid fa-box-open text-amber-400 text-xl"></i>
-            <div>
-              <div class="text-xs text-nexus-muted">Entrega Técnica</div>
-              <div class="text-sm font-bold text-white">Docker & Helm Ready</div>
-            </div>
-          </div>
+          <p class="text-xs text-nexus-muted mt-1.5">Sem saltos pela internet pública</p>
         </div>
 
-        <!-- Buttons -->
-        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-          <a href="#contato" class="w-full sm:w-auto px-8 py-4 rounded-xl text-base font-semibold text-white bg-gradient-to-r from-nexus-primary to-indigo-500 shadow-lg shadow-nexus-primary/25 hover:shadow-nexus-primary/40 transition-all transform hover:-translate-y-1">
-            <i class="fa-solid fa-cloud-arrow-down mr-2"></i> Solicitar Implantação Dedicada
-          </a>
-          <a href="#sobre" class="w-full sm:w-auto px-8 py-4 rounded-xl text-base font-semibold text-white bg-nexus-card border border-nexus-border hover:border-nexus-muted hover:bg-slate-800/50 transition-all">
-            <i class="fa-solid fa-shield-halved mr-2"></i> Conhecer a NexusTax
-          </a>
+        <div class="p-5 rounded-2xl bg-nexus-card/80 border border-nexus-border text-left hover:border-nexus-secondary/40 transition-colors">
+          <div class="text-xs font-mono uppercase text-nexus-muted mb-1">Segurança & LGPD</div>
+          <div class="text-lg font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-lock text-nexus-primary"></i> Dados 100% Seus
+          </div>
+          <p class="text-xs text-nexus-muted mt-1.5">Zero tráfego de dados para fora</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-nexus-card/80 border border-nexus-border text-left hover:border-nexus-secondary/40 transition-colors">
+          <div class="text-xs font-mono uppercase text-nexus-muted mb-1">Padrão Federal</div>
+          <div class="text-lg font-bold text-nexus-secondary flex items-center gap-2">
+            <i class="fa-solid fa-landmark"></i> LC 214/2025
+          </div>
+          <p class="text-xs text-nexus-muted mt-1.5">IBS + CBS em tempo real</p>
         </div>
       </div>
-    </section>
 
-    <!-- 2. Quem Somos e O Que Fazemos (On-Premise / Tech Provider) -->
-    <section id="sobre" class="py-24 border-t border-nexus-border/50 bg-nexus-card/10 relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          
-          <!-- Quem Somos -->
-          <div>
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-nexus-secondary/10 border border-nexus-secondary/20 text-nexus-secondary text-xs font-mono font-bold uppercase tracking-wider mb-3">
-              Engenharia Tributária B2B
+    </div>
+  </section>
+
+  <!-- 2.1 Faixa de Urgência & Cronograma Oficial do Governo Federal -->
+  <section id="cronograma" class="py-12 border-t border-b border-nexus-border bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="p-6 sm:p-8 rounded-3xl bg-nexus-card/90 border border-amber-500/30 shadow-2xl relative overflow-hidden">
+        <div class="absolute -right-12 -top-12 w-48 h-48 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-nexus-border">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center text-xl shrink-0">
+              <i class="fa-solid fa-triangle-exclamation"></i>
             </div>
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-              A engenharia de software especializada entre o seu core banking e as regras do Fisco.
-            </h2>
-            <p class="text-nexus-muted text-lg leading-relaxed mb-6">
-              A <strong>NexusTax</strong> é uma <strong>Tech Provider & Software House</strong> de sistemas distribuídos e infraestrutura tributária crítica. Nascemos com um foco bem definido: desenvolver componentes de software de altíssima performance para adquirentes, subadquirentes e grandes plataformas de gestão ERP.
-            </p>
-            <p class="text-nexus-muted text-base leading-relaxed mb-6">
-              Diferente de intermediadores tradicionais, <strong>não somos instituição de pagamento e não custodiamos dinheiro</strong>. O nosso compromisso é estritamente técnico: projetar, empacotar e entregar motores de cálculo e segregação de Split Payment prontos para serem incorporados à sua própria infraestrutura corporativa, garantindo total conformidade com a <strong>LC 214/2025</strong>.
-            </p>
-
-            <div class="grid grid-cols-2 gap-4 pt-2">
-              <div class="p-4 rounded-xl bg-nexus-bg border border-nexus-border">
-                <div class="text-2xl font-bold text-nexus-secondary mb-1">0%</div>
-                <div class="text-xs text-nexus-muted">Custódia ou intermediação financeira (100% neutro).</div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-mono font-bold uppercase tracking-wider text-amber-400">Regulação Obrigatória em Curso</span>
+                <span class="text-[10px] font-mono bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30">Banco Central & Receita Federal</span>
               </div>
-              <div class="p-4 rounded-xl bg-nexus-bg border border-nexus-border">
-                <div class="text-2xl font-bold text-nexus-success mb-1">&lt; 5ms</div>
-                <div class="text-xs text-nexus-muted">Latência interna em comunicação local de contêineres.</div>
+              <h3 class="text-xl sm:text-2xl font-extrabold text-white mt-1">
+                Cronograma de Vigência do Split Payment da Reforma Tributária
+              </h3>
+            </div>
+          </div>
+          
+          <a href="#contato" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider text-white bg-amber-600 hover:bg-amber-500 transition-all shrink-0 gap-2">
+            <i class="fa-solid fa-clock-rotate-left"></i> Antecipar Homologação
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
+          <div class="p-4 rounded-2xl bg-nexus-bg/80 border border-nexus-border">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono text-emerald-400 font-bold">FASE 01 • PILOTO OBRIGATÓRIO</span>
+              <span class="text-[10px] font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">2026</span>
+            </div>
+            <div class="text-white font-bold text-sm">Início dos Testes de IBS e CBS</div>
+            <p class="text-xs text-nexus-muted mt-2 leading-relaxed">
+              CBS federal a 0,9% e IBS estadual a 0,1% com homologação dos primeiros arranjos de pagamento e conciliação em D+0.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-nexus-bg/80 border border-nexus-border">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono text-nexus-secondary font-bold">FASE 02 • ENTRADA EM VIGOR</span>
+              <span class="text-[10px] font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">2027</span>
+            </div>
+            <div class="text-white font-bold text-sm">Extinção de PIS/Cofins & CBS Plena</div>
+            <p class="text-xs text-nexus-muted mt-2 leading-relaxed">
+              Exigência do Split Payment nos checkouts de maquininhas, gateways e ERPs sob pena de descredenciamento e autuação direta.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-nexus-bg/80 border border-nexus-border">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono text-indigo-400 font-bold">FASE 03 • TRANSIÇÃO TOTAL</span>
+              <span class="text-[10px] font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">2029 - 2033</span>
+            </div>
+            <div class="text-white font-bold text-sm">IBS Substitui ICMS e ISS nos 5.570 Municípios</div>
+            <p class="text-xs text-nexus-muted mt-2 leading-relaxed">
+              Aumento gradual da retenção no destino com cálculo dinâmico simultâneo de alíquotas de cada município e estado brasileiro.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Seção Quem Somos -->
+  <section id="sobre" class="py-24 border-t border-nexus-border/60 bg-nexus-card/30 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-nexus-secondary/10 border border-nexus-secondary/30 text-nexus-secondary font-mono text-xs font-bold uppercase tracking-wider mb-4">
+            Engenharia de Infraestrutura Tributária
+          </div>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-6 leading-tight">
+            A software foundry que constrói o motor proprietário de Split Payment da sua operação.
+          </h2>
+
+          <div class="mb-6 p-5 rounded-xl bg-nexus-card border-l-4 border-nexus-secondary border-nexus-border">
+            <span class="block text-xs font-mono font-bold text-nexus-secondary uppercase tracking-wider mb-1">O Nosso Propósito</span>
+            <p class="text-slate-200 text-sm md:text-base leading-relaxed italic">
+              "Projetamos, construímos e entregamos a infraestrutura de inteligência e mensageria distribuída que conecta as plataformas de pagamento à soberania tributária na nova economia digital."
+            </p>
+          </div>
+
+          <p class="text-nexus-muted text-base leading-relaxed mb-4">
+            A <strong>NexusTax</strong> projeta, programa e homologa o motor de <strong>Split Payment da Reforma Tributária (Governo Federal do Brasil - LC 214/2025)</strong> sob medida para operar diretamente na nuvem privada (VPC) da sua adquirente, banco ou grande ERP.
+          </p>
+
+          <p class="text-nexus-muted text-base leading-relaxed mb-8">
+            Diferente de intermediadores tradicionais, <strong>não somos instituição de pagamento e não custodiamos dinheiro</strong>. O nosso trabalho é 100% de engenharia e conformidade: entregar o código e os contêineres homologados com as diretrizes do Comitê Gestor do IBS e da Receita Federal, garantindo posse definitiva da tecnologia à sua empresa.
+          </p>
+
+          <div class="grid grid-cols-2 gap-6 pt-4 border-t border-nexus-border">
+            <div>
+              <div class="text-3xl font-extrabold text-white font-mono">0%</div>
+              <div class="text-xs text-nexus-muted mt-1">Custódia ou intermediação financeira (100% neutro).</div>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold text-nexus-success font-mono">&lt; 5ms</div>
+              <div class="text-xs text-nexus-muted mt-1">Latência interna em comunicação local de contêineres.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-nexus-bg border border-nexus-border relative glow-cyan">
+          <div class="flex items-center justify-between pb-4 border-b border-nexus-border mb-6">
+            <span class="text-xs font-mono text-nexus-secondary font-bold uppercase tracking-wider">Topologia de Split Payment Local</span>
+            <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">LC 214/2025 Ativo</span>
+          </div>
+
+          <div class="space-y-4 font-mono text-xs">
+            <div class="p-4 rounded-xl bg-nexus-card border border-slate-800">
+              <div class="text-slate-400 text-[11px] mb-1">SUA NUVEM PRIVADA (AWS / GCP / AZURE)</div>
+              <div class="text-white font-semibold flex items-center justify-between">
+                <span>Core Banking / Gateway de Pagamento</span>
+                <span class="text-nexus-success"><i class="fa-solid fa-shield"></i> Seguro</span>
+              </div>
+            </div>
+
+            <div class="flex justify-center text-nexus-secondary py-1">
+              <i class="fa-solid fa-arrow-down-long text-base animate-bounce"></i>
+            </div>
+
+            <div class="p-4 rounded-xl bg-nexus-card border-2 border-nexus-secondary/60">
+              <div class="text-nexus-secondary text-[11px] mb-1">MOTOR NEXUSTAX DEDICADO (VPC LOCAL)</div>
+              <div class="text-white font-semibold">Cálculo IBS/CBS + Arredondamento Legal</div>
+              <div class="text-[11px] text-nexus-muted mt-1 flex justify-between">
+                <span>Latência: 3.2ms</span>
+                <span class="text-emerald-400">Split Instantâneo</span>
+              </div>
+            </div>
+
+            <div class="flex justify-center text-nexus-muted py-1">
+              <i class="fa-solid fa-arrow-down-long text-base"></i>
+            </div>
+
+            <div class="p-4 rounded-xl bg-nexus-card border border-slate-800">
+              <div class="text-slate-400 text-[11px] mb-1">SAÍDA HOMOLOGADA</div>
+              <div class="text-white font-semibold flex items-center justify-between">
+                <span>Comitê Gestor IBS / RFB (Governo Federal)</span>
+                <span class="text-cyan-400"><i class="fa-solid fa-certificate"></i> Compliance</span>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- O Que Fazemos -->
-          <div class="bg-nexus-card border border-nexus-border p-8 md:p-10 rounded-2xl shadow-2xl relative overflow-hidden group">
-            <div class="absolute -top-10 -right-10 w-44 h-44 bg-nexus-primary/20 blur-3xl rounded-full transition-all group-hover:bg-nexus-primary/30"></div>
-            
-            <span class="text-nexus-primary font-mono text-xs font-bold uppercase tracking-wider block mb-2">Escopo do Produto</span>
-            <h3 class="text-2xl font-bold text-white mb-8">O Que Entregamos para a Sua Equipe</h3>
-            
-            <ul class="space-y-6 relative z-10">
-              <li class="flex gap-4 items-start">
-                <div class="w-10 h-10 rounded-lg bg-nexus-bg border border-nexus-border flex items-center justify-center text-nexus-secondary shrink-0 mt-1">
-                  <i class="fa-solid fa-cubes-stacked"></i>
-                </div>
-                <div>
-                  <h4 class="text-white font-bold mb-1">Motor On-Premise / VPC Privada</h4>
-                  <p class="text-sm text-nexus-muted">Desenvolvemos o motor fiscal completo compilado em Go e o entregamos empacotado em imagens Docker prontas para rodar no cluster Kubernetes ou servidores da sua empresa.</p>
-                </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Seção Comparativa: Por Que VPC? -->
+  <section id="por-que-vpc" class="py-24 border-t border-nexus-border bg-nexus-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-nexus-secondary font-mono text-sm font-bold uppercase tracking-wider mb-2">Segurança & Soberania</h2>
+        <p class="text-3xl md:text-4xl font-extrabold text-white mb-4">
+          Por que grandes Adquirentes e ERPs rejeitam APIs compartilhadas?
+        </p>
+        <p class="text-nexus-muted text-base md:text-lg">
+          Em operações de alto volume, enviar dados fiscais e de checkout para servidores públicos de terceiros cria riscos inaceitáveis de latência, vazamento e indisponibilidade.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Cartão 1: O Risco das APIs SaaS Compartilhadas -->
+        <div class="p-8 rounded-3xl bg-nexus-card/50 border border-red-500/30 flex flex-col justify-between">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-mono font-bold uppercase tracking-wider mb-6">
+              <i class="fa-solid fa-triangle-exclamation"></i> SaaS Multi-Tenant (Nuvem Compartilhada)
+            </div>
+            <h3 class="text-xl font-bold text-white mb-4">A Fragilidade do Modelo Compartilhado</h3>
+            <ul class="space-y-4 text-sm text-nexus-muted">
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-xmark text-red-400 mt-1 shrink-0"></i>
+                <span><strong>Latência Imprevisível:</strong> Cada cálculo trafega pela internet pública (50ms a 300ms), atrasando o checkout no ponto de venda.</span>
               </li>
-              <li class="flex gap-4 items-start">
-                <div class="w-10 h-10 rounded-lg bg-nexus-bg border border-nexus-border flex items-center justify-center text-nexus-secondary shrink-0 mt-1">
-                  <i class="fa-solid fa-calculator"></i>
-                </div>
-                <div>
-                  <h4 class="text-white font-bold mb-1">Tabelas Fiscais e Regras Homologadas</h4>
-                  <p class="text-sm text-nexus-muted">Abstração total da matriz tributária dos 5.570 municípios, cálculo proporcional de CBS e IBS e arredondamento estrito regulamentar (Banker's Rounding).</p>
-                </div>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-xmark text-red-400 mt-1 shrink-0"></i>
+                <span><strong>Risco de Exposição LGPD:</strong> Volumes transacionais, valores de faturamento e dados de lojistas ficam armazenados em bancos de dados de terceiros.</span>
               </li>
-              <li class="flex gap-4 items-start">
-                <div class="w-10 h-10 rounded-lg bg-nexus-bg border border-nexus-border flex items-center justify-center text-nexus-secondary shrink-0 mt-1">
-                  <i class="fa-solid fa-code-commit"></i>
-                </div>
-                <div>
-                  <h4 class="text-white font-bold mb-1">Contrato de Atualização Contínua (SMA)</h4>
-                  <p class="text-sm text-nexus-muted">Sua equipe não precisa decifrar as constantes notas técnicas da Receita Federal ou do Comitê Gestor do IBS; fornecemos os updates legislativos prontos para deploy.</p>
-                </div>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-xmark text-red-400 mt-1 shrink-0"></i>
+                <span><strong>Ponto Único de Falha (SPOF):</strong> Se a nuvem do provedor cair, as suas máquinas de cartão e autorizações de Pix travam instantaneamente.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-xmark text-red-400 mt-1 shrink-0"></i>
+                <span><strong>Custo Recorrente Explosivo:</strong> Cobranças variáveis por API que penalizam o crescimento do seu negócio.</span>
               </li>
             </ul>
           </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. Comparativo: Por Que Nuvem Própria / On-Premise? -->
-    <section id="vantagens" class="py-24 border-t border-nexus-border/50 bg-nexus-card/20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-nexus-secondary font-mono text-sm font-bold uppercase tracking-wider mb-2">Segurança & Soberania</h2>
-          <p class="text-3xl md:text-4xl font-bold text-white mb-4">Por que grandes Adquirentes e ERPs rejeitam APIs compartilhadas?</p>
-          <p class="text-nexus-muted text-base sm:text-lg">Entenda a diferença entre depender de um SaaS multi-inquilino de terceiros e ter um motor proprietário rodando dentro dos seus firewalls.</p>
+          <div class="mt-8 pt-4 border-t border-nexus-border text-xs text-red-400 font-mono">
+            Risco de interrupção operacional e auditoria negativa.
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          
-          <!-- Coluna 1: SaaS Compartilhado Comum -->
-          <div class="bg-nexus-card/70 border border-red-900/40 rounded-2xl p-8 relative overflow-hidden">
-            <div class="flex items-center justify-between pb-6 border-b border-red-950/60 mb-6">
-              <div>
-                <span class="text-xs font-mono uppercase tracking-wider text-red-400 font-bold block mb-1">Risco Operacional</span>
-                <h3 class="text-2xl font-bold text-white">SaaS Multi-Tenant em Nuvem de Terceiros</h3>
-              </div>
-              <div class="w-10 h-10 rounded-full bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400">
-                <i class="fa-solid fa-triangle-exclamation text-lg"></i>
-              </div>
+        <!-- Cartão 2: NexusTax Deploy Dedicado -->
+        <div class="p-8 rounded-3xl bg-nexus-card border-2 border-nexus-secondary shadow-2xl relative glow-cyan flex flex-col justify-between">
+          <div class="absolute -top-3.5 right-8 bg-gradient-to-r from-nexus-secondary to-nexus-primary text-white text-xs font-bold px-3.5 py-1 rounded-full uppercase tracking-wider font-mono">
+            Padrão Institucional
+          </div>
+
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-nexus-secondary/10 border border-nexus-secondary/30 text-nexus-secondary text-xs font-mono font-bold uppercase tracking-wider mb-6">
+              <i class="fa-solid fa-shield-halved"></i> NexusTax Deploy Dedicado (Sua VPC)
             </div>
-
+            <h3 class="text-xl font-bold text-white mb-4">Soberania Técnica e Isolamento Total</h3>
             <ul class="space-y-4 text-sm text-slate-300">
               <li class="flex items-start gap-3">
-                <i class="fa-solid fa-xmark text-red-400 mt-1 shrink-0"></i>
-                <span><strong>Tráfego externo de dados sensíveis:</strong> Suas transações, CNPJs de lojistas e volumes financeiros circulam por servidores de startups terceirizadas.</span>
+                <i class="fa-solid fa-check text-nexus-success mt-1 shrink-0"></i>
+                <span><strong>Latência Sub-5ms:</strong> O motor roda ao lado do seu banco de dados na mesma rede interna (VPC Peering ou Localhost).</span>
               </li>
               <li class="flex items-start gap-3">
-                <i class="fa-solid fa-xmark text-red-400 mt-1 shrink-0"></i>
-                <span><strong>Ponto único de falha para seu checkout:</strong> Se a API do fornecedor cair ou sofrer lentidão, suas maquininhas e gateways travam.</span>
+                <i class="fa-solid fa-check text-nexus-success mt-1 shrink-0"></i>
+                <span><strong>Isolamento Absoluto de Dados:</strong> Nenhuma informação de cliente ou valor transacionado sai da sua infraestrutura.</span>
               </li>
               <li class="flex items-start gap-3">
-                <i class="fa-solid fa-xmark text-red-400 mt-1 shrink-0"></i>
-                <span><strong>Auditoria de Compliance complexa:</strong> Bancos e órgãos reguladores exigem laudos e certificações de terceiros que você não controla.</span>
+                <i class="fa-solid fa-check text-nexus-success mt-1 shrink-0"></i>
+                <span><strong>Zero Risco Externo:</strong> Sua operação não sofre com quedas de servidores de fornecedores SaaS.</span>
               </li>
               <li class="flex items-start gap-3">
-                <i class="fa-solid fa-xmark text-red-400 mt-1 shrink-0"></i>
-                <span><strong>Latência de internet pública:</strong> Saltos de rede via internet aberta adicionam de 40ms a 150ms a cada autorização de cartão.</span>
+                <i class="fa-solid fa-check text-nexus-success mt-1 shrink-0"></i>
+                <span><strong>Ativo Proprietário Definitivo:</strong> Código empacotado para a sua empresa, com total controle arquitetural.</span>
               </li>
             </ul>
           </div>
-
-          <!-- Coluna 2: NexusTax On-Premise -->
-          <div class="bg-nexus-card border-2 border-nexus-primary rounded-2xl p-8 relative overflow-hidden shadow-2xl shadow-indigo-950/40">
-            <div class="absolute -top-12 -right-12 w-44 h-44 bg-nexus-primary/20 blur-3xl rounded-full"></div>
-            
-            <div class="flex items-center justify-between pb-6 border-b border-nexus-border mb-6 relative z-10">
-              <div>
-                <span class="text-xs font-mono uppercase tracking-wider text-nexus-secondary font-bold block mb-1">Padrão Bancário & Enterprise</span>
-                <h3 class="text-2xl font-bold text-white">NexusTax Deploy Dedicado (Sua VPC)</h3>
-              </div>
-              <div class="w-10 h-10 rounded-full bg-nexus-success/15 border border-nexus-success/40 flex items-center justify-center text-nexus-success">
-                <i class="fa-solid fa-shield-check text-lg"></i>
-              </div>
-            </div>
-
-            <ul class="space-y-4 text-sm text-slate-200 relative z-10">
-              <li class="flex items-start gap-3">
-                <i class="fa-solid fa-circle-check text-nexus-success mt-1 shrink-0"></i>
-                <span><strong>Isolamento Absoluto dos Dados:</strong> O software roda 100% contido dentro da sua conta AWS, Google Cloud, Azure ou datacenter físico.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <i class="fa-solid fa-circle-check text-nexus-success mt-1 shrink-0"></i>
-                <span><strong>Latência Ultrabaixa (&lt; 5ms):</strong> Chamadas internas via rede privada (VPC Peering/Localhost) sem trafegar por internet pública.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <i class="fa-solid fa-circle-check text-nexus-success mt-1 shrink-0"></i>
-                <span><strong>Conformidade e Auditoria Simplificada:</strong> Facilidade total de aprovação em auditorias de segurança da informação, SOC 2 e PCI-DSS.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <i class="fa-solid fa-circle-check text-nexus-success mt-1 shrink-0"></i>
-                <span><strong>Independência Operacional Total:</strong> Seu processamento de pagamentos nunca para mesmo que ocorram indisponibilidades em provedores externos.</span>
-              </li>
-            </ul>
+          <div class="mt-8 pt-4 border-t border-nexus-border text-xs text-nexus-secondary font-mono flex items-center justify-between">
+            <span>Segurança nível Core Banking.</span>
+            <span class="text-nexus-success font-bold">100% On-Premise</span>
           </div>
-
         </div>
-      </div>
-    </section>
 
-    <!-- 4. Arquitetura Técnica -->
-    <section id="arquitetura" class="py-24 relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Simulador de Split Payment Interativo -->
+  <section id="simulador" class="py-24 border-t border-nexus-border/60 bg-nexus-card/20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-nexus-secondary font-mono text-sm font-bold uppercase tracking-wider mb-2">Simulador de Split Payment</h2>
+        <p class="text-3xl md:text-4xl font-extrabold text-white mb-4">
+          Motor de Segregação da Reforma Tributária (LC 214/2025)
+        </p>
+        <p class="text-nexus-muted text-base md:text-lg">
+          Simule como o motor construído pela NexusTax calcula em tempo real o valor líquido do lojista e a retenção legal na fonte destinada ao Comitê Gestor do IBS e à Receita Federal do Brasil.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto p-6 md:p-8 rounded-3xl bg-nexus-card border border-nexus-border shadow-2xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-8">
           <div>
-            <h2 class="text-nexus-secondary font-mono text-sm font-bold uppercase tracking-wider mb-2">Arquitetura de Engenharia</h2>
-            <p class="text-3xl md:text-4xl font-bold text-white mb-6">Nós desenvolvemos e homologamos. Sua equipe apenas opera.</p>
-            <p class="text-nexus-muted text-lg leading-relaxed mb-6">
-              Construir internamente um motor de rateio com tabelas dinâmicas de 5.570 municípios, assinaturas digitais JWS e integração com os nós da Receita Federal consumiria entre <strong>6 a 9 meses da sua equipe sênior</strong>.
-            </p>
-            <p class="text-nexus-muted text-lg leading-relaxed mb-8">
-              A <strong>NexusTax</strong> entrega o pacote tecnológico homologado, empacotado em contêineres e pronto para implantação com esteiras de CI/CD padronizadas.
-            </p>
-
-            <div class="space-y-4">
-              <div class="flex items-center gap-3 text-sm text-slate-200">
-                <i class="fa-solid fa-check-double text-nexus-success text-base"></i>
-                <span>Motor compilado em <strong>Go de alta densidade</strong> com cache de regras em memória.</span>
-              </div>
-              <div class="flex items-center gap-3 text-sm text-slate-200">
-                <i class="fa-solid fa-check-double text-nexus-success text-base"></i>
-                <span>Módulo de canonização JSON estrita (RFC 8785) e assinatura digital e-CNPJ.</span>
-              </div>
-              <div class="flex items-center gap-3 text-sm text-slate-200">
-                <i class="fa-solid fa-check-double text-nexus-success text-base"></i>
-                <span>Helm Charts, manifests Kubernetes e Docker Compose oficiais inclusos.</span>
-              </div>
+            <label class="block text-xs font-mono uppercase text-nexus-muted mb-2">Valor da Transação (R$)</label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">R$</span>
+              <input id="simAmount" type="number" value="1250.00" step="10" min="1" class="w-full bg-nexus-bg border border-nexus-border rounded-xl pl-12 pr-4 py-3.5 text-white font-mono text-lg font-bold focus:outline-none focus:border-nexus-secondary" />
             </div>
+            <input id="simRange" type="range" min="50" max="10000" step="50" value="1250" class="w-full mt-3 cursor-pointer" />
           </div>
 
-          <!-- Card Ilustrativo de Arquitetura -->
-          <div class="bg-nexus-card border border-nexus-border p-8 rounded-2xl shadow-2xl relative overflow-hidden">
-            <div class="absolute -top-10 -right-10 w-44 h-44 bg-nexus-secondary/15 blur-3xl rounded-full"></div>
-            
-            <div class="font-mono text-xs text-nexus-secondary uppercase tracking-wider mb-4 pb-2 border-b border-nexus-border flex justify-between items-center">
-              <span>Stack de Implantação Dedicada</span>
-              <span class="text-nexus-success"><i class="fa-solid fa-circle text-[8px] mr-1"></i> Isolado</span>
-            </div>
-
-            <div class="space-y-4 relative z-10">
-              <div class="p-4 rounded-xl bg-nexus-bg border border-nexus-border flex items-start gap-4">
-                <div class="w-10 h-10 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0">
-                  <i class="fa-brands fa-docker text-xl"></i>
-                </div>
-                <div>
-                  <h4 class="text-white font-bold text-sm">Containers Auto-Suficientes</h4>
-                  <p class="text-xs text-nexus-muted mt-1">Imagens imutáveis e auditadas com dependências embutidas, prontas para orquestração em EKS, GKE, AKS ou Docker Swarm.</p>
-                </div>
-              </div>
-
-              <div class="p-4 rounded-xl bg-nexus-bg border border-nexus-border flex items-start gap-4">
-                <div class="w-10 h-10 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0">
-                  <i class="fa-solid fa-database text-lg"></i>
-                </div>
-                <div>
-                  <h4 class="text-white font-bold text-sm">Banco e Cache Privados</h4>
-                  <p class="text-xs text-nexus-muted mt-1">Conexão direta aos seus próprios clusters gerenciados (RDS PostgreSQL, ElastiCache Redis) sem dependência externa.</p>
-                </div>
-              </div>
-
-              <div class="p-4 rounded-xl bg-nexus-bg border border-nexus-border flex items-start gap-4">
-                <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
-                  <i class="fa-solid fa-code-branch text-lg"></i>
-                </div>
-                <div>
-                  <h4 class="text-white font-bold text-sm">Contrato de Manutenção e Updates Fiscais</h4>
-                  <p class="text-xs text-nexus-muted mt-1">Garantia contínua de novas versões do motor acompanhando rigorosamente todas as notas técnicas do Comitê Gestor do IBS.</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. Ecossistema Atendido -->
-    <section id="publico" class="py-24 bg-nexus-card/30 border-y border-nexus-border/50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-nexus-success font-mono text-sm font-bold uppercase tracking-wider mb-2">Aplicações Corporativas</h2>
-          <p class="text-3xl md:text-4xl font-bold text-white">Projetado para quem precisa de soberania sobre o tráfego financeiro.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          
-          <div class="bg-nexus-bg border border-nexus-border p-6 rounded-2xl hover:border-nexus-primary transition-all hover:-translate-y-1 shadow-lg">
-            <div class="w-12 h-12 rounded-lg bg-nexus-primary/20 border border-nexus-primary/30 flex items-center justify-center text-nexus-primary text-xl mb-5">
-              <i class="fa-solid fa-credit-card"></i>
-            </div>
-            <h3 class="text-xl font-bold text-white mb-3">Adquirentes & Gateways</h3>
-            <p class="text-sm text-nexus-muted leading-relaxed">
-              Integração direta no barramento interno de mensageria ISO 8583 / REST sem adicionar latência externa no momento da aprovação do lojista.
-            </p>
-          </div>
-
-          <div class="bg-nexus-bg border border-nexus-border p-6 rounded-2xl hover:border-nexus-secondary transition-all hover:-translate-y-1 shadow-lg">
-            <div class="w-12 h-12 rounded-lg bg-nexus-secondary/20 border border-nexus-secondary/30 flex items-center justify-center text-nexus-secondary text-xl mb-5">
-              <i class="fa-solid fa-building-columns"></i>
-            </div>
-            <h3 class="text-xl font-bold text-white mb-3">Bancos & Emissores</h3>
-            <p class="text-sm text-nexus-muted leading-relaxed">
-              Segregação de proventos Pix e liquidação interbancária com conformidade garantida em infraestrutura privada auditável.
-            </p>
-          </div>
-
-          <div class="bg-nexus-bg border border-nexus-border p-6 rounded-2xl hover:border-nexus-success transition-all hover:-translate-y-1 shadow-lg">
-            <div class="w-12 h-12 rounded-lg bg-nexus-success/20 border border-nexus-success/30 flex items-center justify-center text-nexus-success text-xl mb-5">
-              <i class="fa-solid fa-laptop-code"></i>
-            </div>
-            <h3 class="text-xl font-bold text-white mb-3">Grandes ERPs</h3>
-            <p class="text-sm text-nexus-muted leading-relaxed">
-              Ofereça aos seus milhares de clientes corporativos um módulo de faturamento nativo e imune a instabilidades de APIs de terceiros.
-            </p>
-          </div>
-
-          <div class="bg-nexus-bg border border-nexus-border p-6 rounded-2xl hover:border-amber-500 transition-all hover:-translate-y-1 shadow-lg">
-            <div class="w-12 h-12 rounded-lg bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-500 text-xl mb-5">
-              <i class="fa-solid fa-store"></i>
-            </div>
-            <h3 class="text-xl font-bold text-white mb-3">Marketplaces</h3>
-            <p class="text-sm text-nexus-muted leading-relaxed">
-              Decomposição de comissões líquidas e recolhimento instantâneo com governança total sobre o split de cada seller parceiro.
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. Simulador de Split ao Vivo -->
-    <section id="simulador" class="py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-nexus-success font-mono text-sm font-bold uppercase tracking-wider mb-2">Sandbox do Motor</h2>
-          <p class="text-3xl md:text-4xl font-bold text-white mb-4">Simulador de Retenção Tributária em Tempo Real</p>
-          <p class="text-nexus-muted text-lg">Experimente o algoritmo exato de partição que será implantado na sua nuvem corporativa.</p>
-        </div>
-
-        <div class="bg-nexus-bg border border-nexus-border rounded-2xl p-6 md:p-10 shadow-2xl">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
-            <!-- Controles do Simulador -->
-            <div>
-              <label class="block font-mono text-xs font-semibold text-nexus-muted uppercase tracking-wider mb-3">Cenários de Teste Regulatório</label>
-              <div class="flex flex-wrap gap-2 mb-8">
-                <button type="button" onclick="applyPreset(100, '2202.10.00', 32.0, 'Bebidas (Imposto Seletivo 32%)')" class="px-3 py-1.5 rounded-md text-xs font-medium bg-nexus-card border border-nexus-border hover:border-nexus-secondary hover:text-white transition-colors">Bebida (Seletivo 32%)</button>
-                <button type="button" onclick="applyPreset(50, '1006.30.21', 0.0, 'Cesta Básica Nacional (Alíquota Zero)')" class="px-3 py-1.5 rounded-md text-xs font-medium bg-nexus-card border border-nexus-border hover:border-nexus-secondary hover:text-white transition-colors">Cesta Básica (0%)</button>
-                <button type="button" onclick="applyPreset(1200, '8517.13.00', 26.5, 'Eletrônicos (Alíquota de Referência 26.5%)')" class="px-3 py-1.5 rounded-md text-xs font-medium bg-nexus-card border border-nexus-border hover:border-nexus-secondary hover:text-white transition-colors">Smartphone (26.5%)</button>
-              </div>
-
-              <div class="space-y-5">
-                <div>
-                  <label class="block text-sm font-medium text-slate-300 mb-1">Valor Bruto da Venda (R$)</label>
-                  <input type="number" id="sim-val" value="100.00" step="10" oninput="execCalc()" class="w-full bg-nexus-card border border-nexus-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-nexus-primary focus:ring-1 focus:ring-nexus-primary transition-all font-mono" />
-                </div>
-                <div>
-                  <label class="block text-sm font-medium text-slate-300 mb-1">Código NCM do Produto</label>
-                  <input type="text" id="sim-ncm" value="8517.13.00" readonly class="w-full bg-nexus-card/50 border border-nexus-border rounded-lg px-4 py-3 text-nexus-muted cursor-not-allowed font-mono" />
-                </div>
-                <div>
-                  <label class="block text-sm font-medium text-slate-300 mb-1">Estado de Destino</label>
-                  <select id="sim-uf" onchange="execCalc()" class="w-full bg-nexus-card border border-nexus-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-nexus-primary focus:ring-1 focus:ring-nexus-primary transition-all appearance-none">
-                    <option value="SE">Sergipe (SE)</option>
-                    <option value="SP">São Paulo (SP)</option>
-                    <option value="RJ">Rio de Janeiro (RJ)</option>
-                    <option value="MG">Minas Gerais (MG)</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <!-- Display de Resultado -->
-            <div class="bg-nexus-card border border-nexus-border rounded-xl p-6 md:p-8 flex flex-col gap-6">
-              <div class="flex justify-between items-center pb-4 border-b border-nexus-border font-mono text-sm">
-                <span class="text-nexus-success flex items-center gap-2"><i class="fa-solid fa-circle-check"></i> Local Engine: 200 OK</span>
-                <span id="display-latency" class="text-nexus-secondary">VPC Latência: 4ms</span>
-              </div>
-
-              <div>
-                <div class="flex justify-between text-sm mb-2 text-nexus-muted font-medium">
-                  <span>Partição do Montante</span>
-                  <span id="display-ratio">73.5% Lojista / 26.5% Fisco</span>
-                </div>
-                <div class="flex h-3.5 bg-nexus-bg rounded-full overflow-hidden">
-                  <div id="bar-merchant" class="bg-gradient-to-r from-nexus-secondary to-nexus-success w-[73.5%] transition-all duration-300"></div>
-                  <div id="bar-tax" class="bg-gradient-to-r from-amber-500 to-nexus-danger w-[26.5%] transition-all duration-300"></div>
-                </div>
-              </div>
-
-              <div class="grid grid-cols-2 gap-4">
-                <div class="bg-nexus-bg border border-nexus-success/30 rounded-lg p-4">
-                  <div class="text-xs text-nexus-muted mb-1">Líquido do Recebedor</div>
-                  <div id="val-merchant" class="font-mono text-2xl font-bold text-nexus-success">R$ 73,50</div>
-                </div>
-                <div class="bg-nexus-bg border border-nexus-danger/30 rounded-lg p-4">
-                  <div class="text-xs text-nexus-muted mb-1">Retenção Fisco (IBS/CBS)</div>
-                  <div id="val-tax" class="font-mono text-2xl font-bold text-nexus-danger">R$ 26,50</div>
-                </div>
-              </div>
-
-              <div class="pt-4 border-t border-nexus-border font-mono text-xs text-nexus-muted">
-                Classificação Aplicada: <span id="display-regime" class="text-white">Eletrônicos (Alíquota de Referência 26.5%)</span>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. Developer Console & Especificação Técnica -->
-    <section class="py-24 bg-nexus-card/30 border-y border-nexus-border/50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          
           <div>
-            <h2 class="text-nexus-secondary font-mono text-sm font-bold uppercase tracking-wider mb-2">Simplicidade de Integração</h2>
-            <p class="text-3xl md:text-4xl font-bold text-white mb-6">Endpoints REST limpos dentro da sua rede privada.</p>
-            <p class="text-nexus-muted text-lg mb-8 leading-relaxed">
-              O motor expõe uma interface padronizada via HTTP/2 e gRPC local. Sua aplicação envia um payload minimalista e recebe a resposta do rateio tributário em microsegundos.
-            </p>
-            
-            <ul class="space-y-4 mb-8 text-nexus-muted">
-              <li class="flex items-center gap-3"><i class="fa-solid fa-check text-nexus-success"></i> Comunicação direta via localhost ou rede de contêineres interna.</li>
-              <li class="flex items-center gap-3"><i class="fa-solid fa-check text-nexus-success"></i> Respostas com arredondamento estrito (Banker's Rounding regulamentar).</li>
-              <li class="flex items-center gap-3"><i class="fa-solid fa-check text-nexus-success"></i> Métricas em padrão Prometheus e logs estruturados em JSON nativos.</li>
-            </ul>
-
-            <a href="#contato" class="inline-flex items-center gap-2 text-nexus-primary font-semibold hover:text-indigo-400 transition-colors">
-              Agendar Apresentação Técnica <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-
-          <!-- Code Console -->
-          <div class="bg-[#05070d] border border-nexus-border rounded-xl shadow-2xl overflow-hidden font-mono text-sm">
-            <div class="flex justify-between items-center bg-[#0b0f19] px-4 py-3 border-b border-nexus-border">
-              <div class="flex gap-2">
-                <button type="button" onclick="setCodeLang('curl', this)" class="tab-btn active px-3 py-1 rounded text-white bg-slate-800 border border-slate-700 transition-colors">cURL (VPC)</button>
-                <button type="button" onclick="setCodeLang('node', this)" class="tab-btn px-3 py-1 rounded text-nexus-muted border border-transparent hover:text-white transition-colors">Node.js</button>
-                <button type="button" onclick="setCodeLang('go', this)" class="tab-btn px-3 py-1 rounded text-nexus-muted border border-transparent hover:text-white transition-colors">Go</button>
-              </div>
-              <span class="text-xs text-nexus-muted">POST http://engine.vpc.local/v1/splits</span>
-            </div>
-            <div class="p-6 overflow-x-auto text-slate-300">
-<pre id="code-content" class="leading-relaxed">curl -X POST http://engine.vpc.local/v1/splits/calculate \
-  -H "X-Internal-Token: secret_vpc_98a72..." \
-  -H "Content-Type: application/json" \
-  -d '{
-    "transaction_id": "tx_local_8877665544",
-    "total_cents": 10000,
-    "destination_state": "SE",
-    "destination_postal_code": "49000-000",
-    "items": [{ "ncm": "8517.13.00", "amount_cents": 10000 }]
-  }'</pre>
+            <label class="block text-xs font-mono uppercase text-nexus-muted mb-2">Estado de Destino da Operação</label>
+            <select id="simState" class="w-full bg-nexus-bg border border-nexus-border rounded-xl px-4 py-3.5 text-white font-mono text-sm focus:outline-none focus:border-nexus-secondary">
+              <option value="SP">São Paulo (SP) - Alíquota Padrão 26,5% (CBS 8,8% + IBS 17,7%)</option>
+              <option value="RJ">Rio de Janeiro (RJ) - Alíquota Padrão 26,5% (CBS 8,8% + IBS 17,7%)</option>
+              <option value="SE">Sergipe (SE) - Alíquota Padrão 26,5% (CBS 8,8% + IBS 17,7%)</option>
+              <option value="MG">Minas Gerais (MG) - Alíquota Padrão 26,5% (CBS 8,8% + IBS 17,7%)</option>
+              <option value="RS">Rio Grande do Sul (RS) - Alíquota Padrão 26,5% (CBS 8,8% + IBS 17,7%)</option>
+            </select>
+            <div class="text-[11px] text-nexus-muted mt-2">
+              Calibrado para as regras do <strong>Governo Federal do Brasil (LC 214/2025)</strong>.
             </div>
           </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- 8. Metodologia de Entrega (Etapas) -->
-    <section id="entrega" class="py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-nexus-primary font-mono text-sm font-bold uppercase tracking-wider mb-2">Metodologia de Entrega</h2>
-          <p class="text-3xl md:text-4xl font-bold text-white mb-4">Do alinhamento de arquitetura ao Go-Live homologado.</p>
-          <p class="text-nexus-muted text-lg">Um processo estruturado para que sua empresa tenha a solução pronta sem riscos.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div class="p-6 rounded-2xl bg-nexus-card border border-nexus-border relative">
-            <div class="w-10 h-10 rounded-full bg-nexus-primary/20 text-nexus-primary flex items-center justify-center font-bold font-mono mb-4">1</div>
-            <h3 class="text-lg font-bold text-white mb-2">Dimensionamento</h3>
-            <p class="text-sm text-nexus-muted">Levantamento do volume transacional, topologia de rede na sua nuvem e requisitos de segurança corporativa.</p>
+        <!-- Barra Visual de Partição -->
+        <div class="mb-8">
+          <div class="flex justify-between text-xs font-mono mb-2">
+            <span class="text-nexus-success font-semibold flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-nexus-success inline-block"></span> Lojista Líquido (<span id="pctLojista">73.5%</span>)
+            </span>
+            <span class="text-cyan-400 font-semibold flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 inline-block"></span> Retenção Split IBS/CBS (<span id="pctFisco">26.5%</span>)
+            </span>
           </div>
-          <div class="p-6 rounded-2xl bg-nexus-card border border-nexus-border relative">
-            <div class="w-10 h-10 rounded-full bg-nexus-secondary/20 text-nexus-secondary flex items-center justify-center font-bold font-mono mb-4">2</div>
-            <h3 class="text-lg font-bold text-white mb-2">Deploy em Sandbox</h3>
-            <p class="text-sm text-nexus-muted">Instalação dos contêineres na sua VPC de homologação para testes de estresse de latência e integração com seu core.</p>
+          <div class="w-full h-4 bg-nexus-bg rounded-full overflow-hidden flex border border-slate-800">
+            <div id="barLojista" class="bg-nexus-success transition-all duration-300" style="width: 73.5%;"></div>
+            <div id="barFisco" class="bg-gradient-to-r from-nexus-secondary to-indigo-500 transition-all duration-300" style="width: 26.5%;"></div>
           </div>
-          <div class="p-6 rounded-2xl bg-nexus-card border border-nexus-border relative">
-            <div class="w-10 h-10 rounded-full bg-nexus-success/20 text-nexus-success flex items-center justify-center font-bold font-mono mb-4">3</div>
-            <h3 class="text-lg font-bold text-white mb-2">Certificação Fiscal</h3>
-            <p class="text-sm text-nexus-muted">Validação de conformidade matemática com a LC 214/2025 e testes de conectividade com as diretrizes do Banco Central.</p>
+        </div>
+
+        <!-- Resultados Numéricos -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-5 rounded-2xl bg-nexus-bg border border-nexus-border font-mono">
+          <div>
+            <div class="text-[11px] text-nexus-muted uppercase">Split Lojista (Disponível)</div>
+            <div id="resLojista" class="text-xl sm:text-2xl font-bold text-nexus-success mt-1">R$ 918,75</div>
+            <div class="text-[10px] text-slate-500 mt-0.5">Liquidação D+0 / D+1</div>
           </div>
-          <div class="p-6 rounded-2xl bg-nexus-card border border-nexus-border relative">
-            <div class="w-10 h-10 rounded-full bg-amber-400/20 text-amber-400 flex items-center justify-center font-bold font-mono mb-4">4</div>
-            <h3 class="text-lg font-bold text-white mb-2">Go-Live & Manutenção</h3>
-            <p class="text-sm text-nexus-muted">Virada para produção com suporte técnico à sua equipe de DevOps e fornecimento contínuo de atualizações legislativas.</p>
+
+          <div>
+            <div class="text-[11px] text-nexus-muted uppercase">Retenção Federal (CBS)</div>
+            <div id="resCBS" class="text-xl sm:text-2xl font-bold text-white mt-1">R$ 110,00</div>
+            <div class="text-[10px] text-slate-500 mt-0.5">Destino: Receita Federal (8,8%)</div>
+          </div>
+
+          <div>
+            <div class="text-[11px] text-nexus-muted uppercase">Retenção Subnacional (IBS)</div>
+            <div id="resIBS" class="text-xl sm:text-2xl font-bold text-cyan-400 mt-1">R$ 221,25</div>
+            <div class="text-[10px] text-slate-500 mt-0.5">Destino: Comitê Gestor IBS (17,7%)</div>
+          </div>
+        </div>
+
+        <div class="mt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-nexus-muted gap-3">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-microchip text-nexus-secondary"></i>
+            <span>Arredondamento: <strong>Banker's Rounding (Half-Even)</strong> conforme determinação da ABNT e LC 214/2025.</span>
+          </div>
+          <div class="text-emerald-400 font-mono font-semibold flex items-center gap-1">
+            <i class="fa-solid fa-circle-check"></i> Divergência de centavos: R$ 0,00
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- 9. Formulário de Captura Conectado ao Web3Forms -->
-    <section id="contato" class="py-32 relative overflow-hidden bg-nexus-card/50 border-t border-nexus-border">
-      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-nexus-primary/20 via-nexus-bg to-nexus-bg -z-10"></div>
-      
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6">Solicite a implantação do motor na sua nuvem.</h2>
-        <p class="text-xl text-nexus-muted mb-10">Converse com nossos especialistas de engenharia e receba uma proposta técnica sob medida para o volume da sua operação.</p>
+  <!-- 6. Console de Código & Arquitetura Técnica -->
+  <section id="arquitetura" class="py-24 border-t border-nexus-border bg-nexus-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
-        <form id="leadForm" class="bg-nexus-bg border border-nexus-border rounded-2xl p-8 shadow-2xl text-left">
-          <!-- Chave Web3Forms ativa vinculada ao contato@nexustaxapi.com.br -->
-          <input type="hidden" name="access_key" value="aeed105b-3c0c-4c5b-983a-71f141b47f9f">
-          <input type="hidden" name="subject" value="Novo Lead - Solicitação On-Premise NexusTax">
-          <input type="hidden" name="from_name" value="NexusTax On-Premise Page">
-          <input type="checkbox" name="botcheck" style="display: none;">
+        <div class="lg:col-span-5">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 font-mono text-xs font-bold uppercase tracking-wider mb-4">
+            Simplicidade de Integração
+          </div>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-6 leading-tight">
+            Uma chamada interna em milissegundos para resolver toda a conformidade.
+          </h2>
+          <p class="text-nexus-muted text-base leading-relaxed mb-6">
+            O motor compilado expõe uma API REST/gRPC enxuta e de baixa sobrecarga para a sua aplicação. Sua equipe técnica integra a autorização da transação com apenas uma requisição autenticada localmente via mTLS.
+          </p>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <!-- Nome Completo -->
+          <div class="space-y-4 text-sm text-slate-300">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-check-circle text-nexus-success text-base"></i>
+              <span>Assinatura digital via certificados e-CNPJ A1 em memória</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-check-circle text-nexus-success text-base"></i>
+              <span>Idempotência nativa via cabeçalho <code>X-Idempotency-Key</code></span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-check-circle text-nexus-success text-base"></i>
+              <span>Geração assíncrona de eventos Kafka / RabbitMQ para conciliação</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <div class="rounded-2xl bg-nexus-card border border-nexus-border overflow-hidden shadow-2xl">
+            <!-- Tabs do Console -->
+            <div class="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-nexus-border">
+              <div class="flex items-center gap-2">
+                <button id="tabCurl" onclick="switchTab('curl')" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold text-white bg-nexus-border">cURL</button>
+                <button id="tabNode" onclick="switchTab('node')" class="px-3 py-1.5 rounded-lg text-xs font-mono text-nexus-muted hover:text-white">Node.js</button>
+                <button id="tabGo" onclick="switchTab('go')" class="px-3 py-1.5 rounded-lg text-xs font-mono text-nexus-muted hover:text-white">Go (SDK)</button>
+              </div>
+              <span class="text-xs font-mono text-emerald-400 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Local Engine: 200 OK
+              </span>
+            </div>
+
+            <!-- Código -->
+            <pre class="p-6 font-mono text-xs text-slate-200 overflow-x-auto leading-relaxed bg-[#0a0f1d]"><code id="codeSnippet">curl -X POST http://engine.vpc.local/v1/splits/calculate \
+  -H "Content-Type: application/json" \
+  -H "X-Client-Id: adq_live_9921" \
+  -d '{
+    "transaction_id": "tx_88291039",
+    "amount": 1250.00,
+    "state": "SP",
+    "ibge_code": "3550308",
+    "regime": "LUCRO_REAL"
+  }'</code></pre>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Seção Metodologia de Implantação 1-4 -->
+  <section id="metodologia" class="py-24 border-t border-nexus-border/60 bg-nexus-card/30 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-nexus-secondary font-mono text-sm font-bold uppercase tracking-wider mb-2">Processo de Engenharia</h2>
+        <p class="text-3xl md:text-4xl font-extrabold text-white mb-4">Como Construímos e Entregamos a Sua Solução</p>
+        <p class="text-nexus-muted text-base md:text-lg">
+          Metodologia estruturada para garantir conformidade técnica, zero atrito regulatório e entrega definitiva do motor na sua nuvem.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="p-6 rounded-2xl bg-nexus-bg border border-nexus-border relative">
+          <div class="w-10 h-10 rounded-xl bg-nexus-secondary/10 border border-nexus-secondary/30 text-nexus-secondary flex items-center justify-center font-mono font-bold text-base mb-4">
+            01
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Dimensionamento</h3>
+          <p class="text-sm text-nexus-muted leading-relaxed">
+            Mapeamento da sua arquitetura de pagamentos, volumetria de pico (TPS) e regras fiscais específicas do seu modelo de negócio.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-nexus-bg border border-nexus-border relative">
+          <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 flex items-center justify-center font-mono font-bold text-base mb-4">
+            02
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Deploy em Sandbox</h3>
+          <p class="text-sm text-nexus-muted leading-relaxed">
+            Instalação e configuração dos contêineres Docker/Kubernetes em ambiente de testes homologado na sua nuvem privada.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-nexus-bg border border-nexus-border relative">
+          <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center font-mono font-bold text-base mb-4">
+            03
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Certificação Fiscal</h3>
+          <p class="text-sm text-nexus-muted leading-relaxed">
+            Testes de estresse com milhares de cenários tributários simultâneos e validação das regras da LC 214/2025.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-nexus-bg border border-nexus-border relative">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-nexus-success flex items-center justify-center font-mono font-bold text-base mb-4">
+            04
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Go-Live & Entrega</h3>
+          <p class="text-sm text-nexus-muted leading-relaxed">
+            Virada para produção com suporte assistido, entrega de documentação completa e transferência do ativo definitivo.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Formulário Web3Forms (Contato & Implantação) -->
+  <section id="contato" class="py-24 border-t border-nexus-border bg-nexus-bg relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="text-nexus-secondary font-mono text-sm font-bold uppercase tracking-wider mb-2">Engenharia Sob Encomenda</h2>
+        <p class="text-3xl md:text-4xl font-extrabold text-white mb-4">Encomende o Seu Motor de Split Payment</p>
+        <p class="text-nexus-muted text-base">
+          Converse com os nossos engenheiros para dimensionar e homologar a entrega definitiva do motor da Reforma Tributária (LC 214/2025) na sua infraestrutura.
+        </p>
+      </div>
+
+      <div class="p-8 md:p-10 rounded-3xl bg-nexus-card border border-nexus-border shadow-2xl relative">
+        <form id="contactForm" class="space-y-6">
+          <input type="hidden" name="access_key" value="b2852a36-f63b-486a-aa84-18d4d8ef80fe">
+          <input type="hidden" name="subject" value="Nova Solicitação: Motor Split Payment Reforma Tributária - NexusTax">
+          <input type="hidden" name="from_name" value="NexusTax Portal Lead">
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
-              <label class="block text-sm font-medium text-slate-300 mb-2">Nome Completo</label>
-              <input type="text" name="nome" placeholder="Ex: Carlos Eduardo" required class="w-full bg-nexus-card border border-nexus-border rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-nexus-primary focus:ring-1 focus:ring-nexus-primary transition-all" />
+              <label class="block text-xs font-mono uppercase text-nexus-muted mb-2">Nome Completo *</label>
+              <input type="text" name="name" required placeholder="Ex: Roberto Silva" class="w-full bg-nexus-bg border border-nexus-border rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-nexus-secondary text-sm" />
             </div>
 
-            <!-- E-mail Corporativo -->
             <div>
-              <label class="block text-sm font-medium text-slate-300 mb-2">E-mail Corporativo</label>
-              <input type="email" name="email" placeholder="carlos@empresa.com.br" required class="w-full bg-nexus-card border border-nexus-border rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-nexus-primary focus:ring-1 focus:ring-nexus-primary transition-all" />
+              <label class="block text-xs font-mono uppercase text-nexus-muted mb-2">E-mail Corporativo *</label>
+              <input type="email" name="email" required placeholder="roberto@empresa.com.br" class="w-full bg-nexus-bg border border-nexus-border rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-nexus-secondary text-sm" />
             </div>
+          </div>
 
-            <!-- Nome da Empresa -->
-            <div class="md:col-span-2">
-              <label class="block text-sm font-medium text-slate-300 mb-2">Nome da Empresa</label>
-              <input type="text" name="empresa" placeholder="Razão Social ou Nome Fantasia" required class="w-full bg-nexus-card border border-nexus-border rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-nexus-primary focus:ring-1 focus:ring-nexus-primary transition-all" />
-            </div>
-
-            <!-- Telefone Fixo -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
-              <label class="block text-sm font-medium text-slate-300 mb-2">Telefone Comercial (Fixo)</label>
-              <input type="tel" id="telefone" name="telefone_fixo" placeholder="(11) 3200-0000" maxlength="14" class="w-full bg-nexus-card border border-nexus-border rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-nexus-primary focus:ring-1 focus:ring-nexus-primary transition-all" />
+              <label class="block text-xs font-mono uppercase text-nexus-muted mb-2">Nome da Empresa *</label>
+              <input type="text" name="company" required placeholder="Nome da Adquirente ou ERP" class="w-full bg-nexus-bg border border-nexus-border rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-nexus-secondary text-sm" />
             </div>
 
-            <!-- Celular / WhatsApp -->
             <div>
-              <label class="block text-sm font-medium text-slate-300 mb-2">Celular / WhatsApp</label>
-              <input type="tel" id="celular" name="celular_whatsapp" placeholder="(11) 98800-0000" maxlength="15" required class="w-full bg-nexus-card border border-nexus-border rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-nexus-primary focus:ring-1 focus:ring-nexus-primary transition-all" />
+              <label class="block text-xs font-mono uppercase text-nexus-muted mb-2">WhatsApp / Telefone *</label>
+              <input type="tel" id="phoneInput" name="phone" required placeholder="(11) 99999-9999" class="w-full bg-nexus-bg border border-nexus-border rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-nexus-secondary text-sm font-mono" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-mono uppercase text-nexus-muted mb-2">Ambiente Pretendido</label>
+              <select name="environment" class="w-full bg-nexus-bg border border-nexus-border rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-nexus-secondary">
+                <option value="AWS">Amazon Web Services (AWS VPC)</option>
+                <option value="GCP">Google Cloud Platform (GCP)</option>
+                <option value="Azure">Microsoft Azure VNet</option>
+                <option value="OnPremise">Datacenter Próprio / Bare Metal</option>
+              </select>
             </div>
 
-            <!-- Segmento de Atuação -->
-            <div class="md:col-span-2">
-              <label class="block text-sm font-medium text-slate-300 mb-2">Segmento da sua operação:</label>
-              <select name="tipo_empresa" required class="w-full bg-nexus-card border border-nexus-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-nexus-primary focus:ring-1 focus:ring-nexus-primary transition-all appearance-none">
-                <option value="adquirente">Adquirente / Subadquirente</option>
-                <option value="banco_emissor">Banco / Emissor / Instituição de Pagamento</option>
-                <option value="erp_software">Software House / Grande ERP</option>
-                <option value="marketplace">Marketplace Multi-Seller</option>
-                <option value="outro">Outro segmento de pagamentos</option>
+            <div>
+              <label class="block text-xs font-mono uppercase text-nexus-muted mb-2">Volume Estimado Mensal</label>
+              <select name="volume" class="w-full bg-nexus-bg border border-nexus-border rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-nexus-secondary">
+                <option value="Piloto">Fase Piloto / Testes Iniciais</option>
+                <option value="Ate100k">Até 100.000 transações/mês</option>
+                <option value="100k-1M">100.000 a 1.000.000 transações/mês</option>
+                <option value="Acima1M">Acima de 1.000.000 transações/mês</option>
               </select>
             </div>
           </div>
-          
-          <button type="submit" id="btnSubmit" class="w-full py-4 rounded-xl text-base font-bold text-white bg-gradient-to-r from-nexus-primary to-indigo-500 hover:to-indigo-400 shadow-lg shadow-nexus-primary/25 transition-all">
-            Solicitar Proposta de Implantação On-Premise
+
+          <div>
+            <label class="block text-xs font-mono uppercase text-nexus-muted mb-2">Detalhes da Operação (Opcional)</label>
+            <textarea name="message" rows="3" placeholder="Descreva brevemente sua topologia atual ou requisitos de mensageria..." class="w-full bg-nexus-bg border border-nexus-border rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-nexus-secondary text-sm"></textarea>
+          </div>
+
+          <button id="submitBtn" type="submit" class="w-full py-4 rounded-xl text-base font-bold text-white bg-gradient-to-r from-nexus-primary to-indigo-600 hover:from-blue-600 hover:to-indigo-500 shadow-xl shadow-blue-500/25 transition-all flex items-center justify-center gap-2">
+            <span>Solicitar Dimensionamento & Homologação</span>
+            <i class="fa-solid fa-arrow-right text-sm"></i>
           </button>
-
-          <!-- Mensagem de Confirmação In-Page -->
-          <div id="msg-ok" class="hidden mt-6 p-4 rounded-lg bg-nexus-success/10 border border-nexus-success/30 text-nexus-success text-center font-medium">
-            ✅ Solicitação recebida com sucesso! A nossa equipe de engenharia entrará em contato em breve para agendar a reunião técnica.
-          </div>
-          <div id="msg-err" class="hidden mt-4 p-4 rounded-lg bg-nexus-danger/10 border border-nexus-danger/30 text-nexus-danger text-center font-medium">
-            Ocorreu um erro ao enviar. Por favor, tente novamente ou fale pelo WhatsApp.
-          </div>
         </form>
-      </div>
-    </section>
 
-  </main>
+        <div id="formFeedback" class="hidden mt-6 p-4 rounded-xl text-sm font-medium text-center"></div>
+      </div>
+    </div>
+  </section>
 
-  <!-- Rodapé Institucional -->
-  <footer class="bg-[#030509] border-t border-nexus-border py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-      <div class="flex items-center gap-2">
-        <i class="fa-solid fa-layer-group text-nexus-secondary"></i>
-        <span class="text-lg font-bold text-white tracking-tight">Nexus<span class="text-nexus-secondary">Tax</span></span>
+  <!-- 9. Rodapé Institucional Blindado & Alinhado -->
+  <footer class="bg-[#030509] border-t border-nexus-border py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <!-- Lado Esquerdo: Marca & Tag -->
+      <div class="flex items-center gap-3 shrink-0">
+        <i class="fa-solid fa-layer-group text-nexus-secondary text-base"></i>
+        <span class="text-base font-bold text-white tracking-tight">Nexus<span class="text-nexus-secondary">Tax</span></span>
+        <span class="text-[10px] font-mono text-nexus-muted px-2 py-0.5 rounded bg-slate-900 border border-slate-800">FOUNDRY</span>
       </div>
-      
-      <p class="text-sm text-nexus-muted text-center md:text-left flex flex-col sm:flex-row items-center gap-3">
-        <span>&copy; 2026 NexusTax. Motores dedicados de split payment para infraestruturas financeiras.</span>
-        <a href="mailto:contato@nexustaxapi.com.br" class="text-nexus-secondary hover:underline inline-flex items-center gap-1.5">
-          <i class="fa-solid fa-envelope"></i> contato@nexustaxapi.com.br
-        </a>
-      </p>
-      
-      <div class="flex items-center gap-4">
-        <a href="https://wa.me/5579988216266" target="_blank" class="text-emerald-400 hover:text-emerald-300 transition-colors text-sm flex items-center gap-1">
-          <i class="fa-brands fa-whatsapp text-lg"></i> +55 (79) 98821-6266
-        </a>
-        <a href="https://github.com/almsilva0101-cpu/nexustax-landingpage" target="_blank" class="text-nexus-muted hover:text-white transition-colors">
-          <i class="fa-brands fa-github text-xl"></i>
+
+      <!-- Centro: Copyright & E-mail Alinhados -->
+      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-xs text-nexus-muted text-center">
+        <span>&copy; 2026 NexusTax. Split Payment da Reforma Tributária sob encomenda.</span>
+        <a href="mailto:contato@nexustaxapi.com.br" class="text-slate-300 hover:text-nexus-secondary transition-colors inline-flex items-center gap-1.5 font-medium">
+          <i class="fa-solid fa-envelope text-nexus-secondary text-xs"></i> contato@nexustaxapi.com.br
         </a>
       </div>
+
+      <!-- Lado Direito: Badge LC 214 & Botão WhatsApp Alinhados -->
+      <div class="flex items-center gap-4 shrink-0">
+        <span class="text-xs text-slate-400 inline-flex items-center gap-1.5">
+          <i class="fa-solid fa-shield-halved text-nexus-success text-xs"></i> Governo Federal • LC 214/2025
+        </span>
+        <a href="https://wa.me/5579988216266?text=Ola%2C%20gostaria%20de%20solicitar%20informacoes%20sobre%20a%20infraestrutura%20NexusTax." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 hover:bg-emerald-500/20 hover:border-emerald-500/50 transition-all shadow-sm">
+          <i class="fa-brands fa-whatsapp text-sm text-emerald-400"></i>
+          <span>Falar com Engenharia</span>
+        </a>
+      </div>
+
     </div>
   </footer>
 
-  <!-- Botão Flutuante de WhatsApp -->
-  <a href="https://wa.me/5579988216266?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20a%20implanta%C3%A7%C3%A3o%20On-Premise%20da%20NexusTax" target="_blank" class="fixed bottom-6 right-6 z-50 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-5 py-3 rounded-full shadow-2xl flex items-center gap-2 transition-all transform hover:scale-105">
-    <i class="fa-brands fa-whatsapp text-xl"></i>
-    <span>Falar no WhatsApp</span>
+  <!-- Botão Flutuante de Atendimento WhatsApp (Sem expor dígitos de telefone) -->
+  <a href="https://wa.me/5579988216266?text=Ola%2C%20gostaria%20de%20solicitar%20informacoes%20sobre%20a%20infraestrutura%20NexusTax." target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2.5 px-4 py-3 rounded-full bg-emerald-500 text-white font-semibold text-sm shadow-2xl shadow-emerald-600/40 hover:bg-emerald-400 hover:scale-105 active:scale-95 transition-all group" aria-label="Falar com Engenharia no WhatsApp">
+    <i class="fa-brands fa-whatsapp text-xl group-hover:rotate-12 transition-transform"></i>
+    <span class="hidden sm:inline font-sans text-xs uppercase tracking-wider font-bold">Falar com Engenharia</span>
   </a>
 
-  <!-- Scripts: Simulador, Tabs e AJAX Web3Forms com Máscara -->
+  <!-- Scripts Interativos: Simulador, Abas de Código, Máscaras e Envio Web3Forms -->
   <script>
-    // --- Lógica do Simulador ---
-    let currentTaxRate = 26.5;
-    let currentRegimeText = "Eletrônicos (Alíquota de Referência 26.5%)";
+    // Menu Mobile
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
 
-    function applyPreset(val, ncm, rate, label) {
-      document.getElementById('sim-val').value = val.toFixed(2);
-      document.getElementById('sim-ncm').value = ncm;
-      currentTaxRate = rate;
-      currentRegimeText = label;
-      execCalc();
+    // Simulador Dinâmico de Split Payment
+    const simAmount = document.getElementById('simAmount');
+    const simRange = document.getElementById('simRange');
+    const resLojista = document.getElementById('resLojista');
+    const resCBS = document.getElementById('resCBS');
+    const resIBS = document.getElementById('resIBS');
+    const barLojista = document.getElementById('barLojista');
+    const barFisco = document.getElementById('barFisco');
+
+    function bankersRound(num) {
+      const d = 2;
+      const m = Math.pow(10, d);
+      const n = +(d ? num * m : num).toFixed(8);
+      const i = Math.floor(n), f = n - i;
+      const e = 1e-8;
+      const r = (f > 0.5 - e && f < 0.5 + e) ? ((i % 2 === 0) ? i : i + 1) : Math.round(n);
+      return d ? r / m : r;
     }
 
-    function execCalc() {
-      const gross = parseFloat(document.getElementById('sim-val').value) || 0;
-      const tax = gross * (currentTaxRate / 100);
-      const merchant = gross - tax;
-
-      const merchantPct = gross > 0 ? (merchant / gross) * 100 : 100;
-      const taxPct = gross > 0 ? (tax / gross) * 100 : 0;
-
-      document.getElementById('val-merchant').innerText = 'R$ ' + merchant.toFixed(2).replace('.', ',');
-      document.getElementById('val-tax').innerText = 'R$ ' + tax.toFixed(2).replace('.', ',');
-      document.getElementById('display-ratio').innerText = merchantPct.toFixed(1) + '% Lojista / ' + taxPct.toFixed(1) + '% Fisco';
-      document.getElementById('bar-merchant').style.width = merchantPct + '%';
-      document.getElementById('bar-tax').style.width = taxPct + '%';
-      document.getElementById('display-regime').innerText = currentRegimeText;
-
-      const ms = Math.floor(Math.random() * 3) + 3; // Latência típica interna < 5ms
-      document.getElementById('display-latency').innerText = 'VPC Latência: ' + ms + 'ms';
+    function formatBRL(val) {
+      return val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
 
-    execCalc();
+    function updateSimulation() {
+      let amount = parseFloat(simAmount.value) || 0;
+      if (amount < 0) amount = 0;
 
-    // --- Tabs do Console de Código ---
-    const codeExamples = {
+      // Alíquotas Padrão de Referência da Reforma (LC 214/2025)
+      // Total de 26,5%: CBS federal ~8,8% e IBS subnacional ~17,7%
+      const cbsRate = 0.088;
+      const ibsRate = 0.177;
+
+      const cbsVal = bankersRound(amount * cbsRate);
+      const ibsVal = bankersRound(amount * ibsRate);
+      const totalTax = bankersRound(cbsVal + ibsVal);
+      const netMerchant = bankersRound(amount - totalTax);
+
+      resLojista.textContent = formatBRL(netMerchant);
+      resCBS.textContent = formatBRL(cbsVal);
+      resIBS.textContent = formatBRL(ibsVal);
+
+      if (amount > 0) {
+        const pctTax = ((totalTax / amount) * 100).toFixed(1);
+        const pctNet = (100 - pctTax).toFixed(1);
+        barLojista.style.width = pctNet + '%';
+        barFisco.style.width = pctTax + '%';
+      }
+    }
+
+    simAmount.addEventListener('input', (e) => {
+      simRange.value = e.target.value;
+      updateSimulation();
+    });
+
+    simRange.addEventListener('input', (e) => {
+      simAmount.value = parseFloat(e.target.value).toFixed(2);
+      updateSimulation();
+    });
+
+    document.getElementById('simState').addEventListener('change', updateSimulation);
+    updateSimulation();
+
+    // Abas do Console de Código
+    const codeSnippet = document.getElementById('codeSnippet');
+    const tabCurl = document.getElementById('tabCurl');
+    const tabNode = document.getElementById('tabNode');
+    const tabGo = document.getElementById('tabGo');
+
+    const snippets = {
       curl: `curl -X POST http://engine.vpc.local/v1/splits/calculate \\
-  -H "X-Internal-Token: secret_vpc_98a72..." \\
   -H "Content-Type: application/json" \\
+  -H "X-Client-Id: adq_live_9921" \\
   -d '{
-    "transaction_id": "tx_local_8877665544",
-    "total_cents": 10000,
-    "destination_state": "SE",
-    "destination_postal_code": "49000-000",
-    "items": [{ "ncm": "8517.13.00", "amount_cents": 10000 }]
+    "transaction_id": "tx_88291039",
+    "amount": 1250.00,
+    "state": "SP",
+    "ibge_code": "3550308",
+    "regime": "LUCRO_REAL"
   }'`,
-      node: `// Chamada interna na mesma rede local ou Kubernetes cluster
-import axios from 'axios';
+      node: `import axios from 'axios';
 
-const response = await axios.post('http://engine.vpc.local/v1/splits/calculate', {
-  transaction_id: "tx_local_8877665544",
-  total_cents: 10000,
-  destination_state: "SE",
-  destination_postal_code: "49000-000",
-  items: [{ ncm: "8517.13.00", amount_cents: 10000 }]
+// Chamada interna com mTLS de latência < 4ms
+const { data } = await axios.post('http://engine.vpc.local/v1/splits/calculate', {
+  transaction_id: 'tx_88291039',
+  amount: 1250.00,
+  state: 'SP',
+  ibge_code: '3550308',
+  regime: 'LUCRO_REAL'
 }, {
-  headers: { 'X-Internal-Token': process.env.NEXUSTAX_LOCAL_SECRET }
+  headers: { 'X-Client-Id': process.env.NEXUSTAX_CLIENT_ID }
 });
 
-console.log('Líquido do Lojista (centavos):', response.data.merchant_cents);`,
+console.log('Líquido Lojista:', data.net_merchant);
+console.log('Retenção IBS/CBS:', data.fisco_retention);`,
       go: `package main
 
 import (
-    "bytes"
-    "net/http"
+    "fmt"
+    "github.com/nexustax/client-go"
 )
 
-func calculateLocalSplit() (*http.Response, error) {
-    // Latência sub-5ms via DNS interno da VPC
-    payload := []byte(\`{"transaction_id":"tx_local_8877665544","total_cents":10000,"destination_state":"SE","items":[{"ncm":"8517.13.00","amount_cents":10000}]}\`)
-    req, _ := http.NewRequest("POST", "http://engine.vpc.local/v1/splits/calculate", bytes.NewBuffer(payload))
-    req.Header.Set("Content-Type", "application/json")
-    req.Header.Set("X-Internal-Token", "secret_vpc_98a72...")
-
-    client := &http.Client{}
-    return client.Do(req)
+func main() {
+    engine := nexustax.NewLocalClient("http://engine.vpc.local")
+    split, err := engine.CalculateSplit(&nexustax.SplitRequest{
+        TransactionID: "tx_88291039",
+        Amount:        1250.00,
+        State:         "SP",
+        IBGECode:      "3550308",
+    })
+    if err != nil {
+        panic(err)
+    }
+    fmt.Printf("Split calculado: %+v\\n", split)
 }`
     };
 
-    function setCodeLang(lang, btn) {
-      document.getElementById('code-content').innerText = codeExamples[lang];
-      
-      const tabs = document.querySelectorAll('.tab-btn');
-      tabs.forEach(t => {
-        t.classList.remove('active', 'text-white', 'bg-slate-800', 'border-slate-700');
-        t.classList.add('text-nexus-muted', 'border-transparent');
+    function switchTab(lang) {
+      [tabCurl, tabNode, tabGo].forEach(tab => {
+        tab.className = "px-3 py-1.5 rounded-lg text-xs font-mono text-nexus-muted hover:text-white";
       });
-      
-      btn.classList.add('active', 'text-white', 'bg-slate-800', 'border-slate-700');
-      btn.classList.remove('text-nexus-muted', 'border-transparent');
+
+      if (lang === 'curl') tabCurl.className = "px-3 py-1.5 rounded-lg text-xs font-mono font-bold text-white bg-nexus-border";
+      if (lang === 'node') tabNode.className = "px-3 py-1.5 rounded-lg text-xs font-mono font-bold text-white bg-nexus-border";
+      if (lang === 'go') tabGo.className = "px-3 py-1.5 rounded-lg text-xs font-mono font-bold text-white bg-nexus-border";
+
+      codeSnippet.textContent = snippets[lang];
     }
 
-    // --- Máscara de Telefone Comercial Fixo (10 dígitos) ---
-    const telInput = document.getElementById('telefone');
-    telInput.addEventListener('input', function (e) {
-      let v = e.target.value.replace(/\D/g, '').substring(0, 10);
-      if (v.length > 6) {
-        e.target.value = `(${v.substring(0, 2)}) ${v.substring(2, 6)}-${v.substring(6)}`;
-      } else if (v.length > 2) {
-        e.target.value = `(${v.substring(0, 2)}) ${v.substring(2)}`;
-      } else if (v.length > 0) {
-        e.target.value = `(${v}`;
-      } else {
-        e.target.value = '';
-      }
+    // Máscara de Telefone Brasileira
+    const phoneInput = document.getElementById('phoneInput');
+    phoneInput.addEventListener('input', (e) => {
+      let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+      e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
     });
 
-    // --- Máscara de Celular / WhatsApp (11 dígitos) ---
-    const celInput = document.getElementById('celular');
-    celInput.addEventListener('input', function (e) {
-      let v = e.target.value.replace(/\D/g, '').substring(0, 11);
-      if (v.length > 7) {
-        e.target.value = `(${v.substring(0, 2)}) ${v.substring(2, 7)}-${v.substring(7)}`;
-      } else if (v.length > 2) {
-        e.target.value = `(${v.substring(0, 2)}) ${v.substring(2)}`;
-      } else if (v.length > 0) {
-        e.target.value = `(${v}`;
-      } else {
-        e.target.value = '';
-      }
-    });
+    // Submissão Assíncrona do Web3Forms
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const formFeedback = document.getElementById('formFeedback');
 
-    // --- Submissão Assíncrona Web3Forms sem tela branca ---
-    const form = document.getElementById('leadForm');
-    const btnSubmit = document.getElementById('btnSubmit');
-    const msgOk = document.getElementById('msg-ok');
-    const msgErr = document.getElementById('msg-err');
-
-    form.addEventListener('submit', async function(e) {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processando envio seguro...';
 
-      const celDigits = celInput.value.replace(/\D/g, '');
-      if (celDigits.length < 10) {
-        alert('Por favor, informe um número de celular ou WhatsApp válido com DDD.');
-        celInput.focus();
-        return;
-      }
-
-      btnSubmit.disabled = true;
-      btnSubmit.innerText = 'Processando solicitação...';
-      msgErr.classList.add('hidden');
-
-      const formData = new FormData(form);
+      const formData = new FormData(contactForm);
       const json = JSON.stringify(Object.fromEntries(formData));
 
       try {
@@ -871,20 +930,19 @@ func calculateLocalSplit() (*http.Response, error) {
         const result = await response.json();
 
         if (response.status === 200) {
-          form.reset();
-          btnSubmit.style.display = 'none';
-          msgOk.classList.remove('hidden');
+          formFeedback.className = "mt-6 p-4 rounded-xl text-sm font-medium text-center bg-emerald-500/10 border border-emerald-500/30 text-emerald-400";
+          formFeedback.innerHTML = '<i class="fa-solid fa-circle-check text-base"></i> Solicitação enviada com sucesso! Nossos engenheiros entrarão em contato em até 4 horas úteis.';
+          contactForm.reset();
         } else {
-          msgErr.innerText = result.message || 'Ocorreu um erro no envio. Tente novamente.';
-          msgErr.classList.remove('hidden');
-          btnSubmit.disabled = false;
-          btnSubmit.innerText = 'Solicitar Proposta de Implantação On-Premise';
+          throw new Error(result.message || 'Erro ao processar');
         }
       } catch (err) {
-        msgErr.innerText = 'Erro de conexão ao enviar o formulário. Fale pelo WhatsApp.';
-        msgErr.classList.remove('hidden');
-        btnSubmit.disabled = false;
-        btnSubmit.innerText = 'Solicitar Proposta de Implantação On-Premise';
+        formFeedback.className = "mt-6 p-4 rounded-xl text-sm font-medium text-center bg-red-500/10 border border-red-500/30 text-red-400";
+        formFeedback.innerHTML = '<i class="fa-solid fa-triangle-exclamation text-base"></i> Falha no envio. Favor entrar em contato através do e-mail oficial contato@nexustaxapi.com.br.';
+      } finally {
+        formFeedback.classList.remove('hidden');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>Solicitar Dimensionamento & Homologação</span> <i class="fa-solid fa-arrow-right text-sm"></i>';
       }
     });
   </script>
